@@ -58,7 +58,7 @@ class FitUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ['password']
+    REQUIRED_FIELDS = ('password',)
 
     objects = FitUserManager()
 
