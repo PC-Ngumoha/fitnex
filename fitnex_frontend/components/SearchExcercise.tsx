@@ -10,8 +10,12 @@ const SearchExcercise = (props: Props) => {
   
   return (
     <div className='mt-[37px] flex flex-col items-center justify-center p-[20px]'>
-      <h1 className="scroll-m-20 text-2xl font-bold text-center tracking-tight lg:text-3xl mb-[50px]">
-        Awesome Excercise You <br /> Should Know
+      <h1 className="scroll-m-20 text-2xl font-bold text-center tracking-tight lg:text-3xl mb-[50px] bg-gradient-to-r
+        from-white
+        to-gray-500 
+         bg-clip-text
+         text-transparent">
+        Awesome Excercises Every Trainer Should Know!
       </h1>
 
       <div className="flex items-center justify-center mb-10 gap-2">

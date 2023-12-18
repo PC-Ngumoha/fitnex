@@ -21,17 +21,18 @@ const Navbar = (props: Props) => {
         <nav className="fixed inset-x-0 top-0 bg-white dark:bg-gray-900 z-[10] h-fit border-b border-zinc-300 py-2">
             <div className='flex items-center justify-center h-full gap-2 px-8 mx-auto sm:justify-between max-w-7xl'>
                 <Link href="/" className='items-center hidden gap-2 sm:flex'>
-                    <p className='rounded-lg border-2 border-b-4 border-r-4 border-black p-4 py-1 text-xl font-bold transition-all hover:translate-y-[2px] md:block dark:border-white'>
+                    <p className='rounded-lg p-4 py-1 text-3xl font-bold transition-all hover:translate-y-[2px] md:block bg-gradient-to-r from-blue-500 to-blue-100 bg-clip-text text-transparent'>
                         Fitnex
                     </p>
+                    <p>v1.0</p>
                 </Link>
                 <div className='flex items-center'>
 
                     {session && (
 
                         <>
-                            <Link href="/create" className='mr-3 rounded-lg border-2 border-b-4 border-r-4 border-slate-500 px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'> Routine</Link>
-                            <Link href="/settings" className='mr-3 rounded-lg border-2 border-b-4 border-r-4 border-slate-500 px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'>Excercise</Link>
+                            <Link href="/create" className='mr-3 rounded-lg border-2 border-b-4 border-r-4 border-slate-500 px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'> Routines</Link>
+                            <Link href="/settings" className='mr-3 rounded-lg border-2 border-b-4 border-r-4 border-slate-500 px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'>Excercises</Link>
                         </>
                     )}
                     <ThemeToggle className="mr-3" />
