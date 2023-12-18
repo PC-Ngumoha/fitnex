@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     
     # local apps
     'account.apps.AccountConfig',
+    'exercise.apps.ExerciseConfig',
 ]
 
 MIDDLEWARE = [
