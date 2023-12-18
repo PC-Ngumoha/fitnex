@@ -5,7 +5,7 @@ def make_req(url):
     querystring = {"limit": "2"}
 
     headers = {
-        "X-RapidAPI-Key": "b66e203ba8msh2f5903f28ae9dcbp1fdd05jsnb4b4f8add13b",
+        "X-RapidAPI-Key": "",
         "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
     }
 
