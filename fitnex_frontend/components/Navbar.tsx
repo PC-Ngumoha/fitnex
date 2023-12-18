@@ -30,8 +30,8 @@ const Navbar = (props: Props) => {
                     {session && (
 
                         <>
-                            <Link href="/create" className='mr-3 rounded-lg border-2 border-b-4 border-r-4 border-slate-500 px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'> Routine</Link>
-                            <Link href="/settings" className='mr-3 rounded-lg border-2 border-b-4 border-r-4 border-slate-500 px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'>Excercise</Link>
+                            
+                            <Link href="/exercise" className='mr-3 rounded-lg border-2 border-b-4 border-r-4 border-slate-500 px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'>Excercise</Link>
                         </>
                     )}
                     <ThemeToggle className="mr-3" />

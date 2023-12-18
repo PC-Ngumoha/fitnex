@@ -4,3 +4,7 @@ export const Auth = {
     register : BASE_URL + "/account/register",
     login : BASE_URL + "/account/login",
 }
+
+export const Exercise = {
+    list : BASE_URL + "/exercises/exercise" as any,
+}
