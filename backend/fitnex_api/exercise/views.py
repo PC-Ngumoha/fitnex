@@ -17,144 +17,119 @@ class ExerciseView(APIView):
     serializer_class = ExerciseSerializers
 
     def get(self, request):
-        # Get all exercises from the database
-        exercises = Exercise.objects.all()
+        # # Get all exercises from the database
+        # exercises = Exercise.objects.all()
 
-        # Serialize the data using ExerciseSerializers
-        serializer = ExerciseSerializers(exercises, many=True)
+        # # Serialize the data using ExerciseSerializers
+        # serializer = ExerciseSerializers(exercises, many=True)
 
-        # Return the serialized data in the response
-        return Response(serializer.data)
+        # # Return the serialized data in the response
+        # return Response(serializer.data)
 
-        # try:
-        #     # Fetch data from the API
+        try:
+            # Fetch data from the API
 
-        #     api_data = make_req("https://exercisedb.p.rapidapi.com/exercises")
-        #     print(api_data)
+            api_data = make_req("https://exercisedb.p.rapidapi.com/exercises")
+            # print(api_data)
 
-        #     # Deserialize data using the Serializers
-        #     exercise_serializer = ExerciseSerializers(data=api_data, many=True)
-        #     print("==========")
-        #     print(exercise_serializer)
-        #     exercise_serializer.is_valid(raise_exception=True)
+            # Deserialize data using the Serializers
+            exercise_serializer = ExerciseSerializers(data=api_data, many=True)
+            # print("==========")
+            # print(exercise_serializer)
+            exercise_serializer.is_valid(raise_exception=True)
 
-        #     # Save deserialized data to the database
-        #     exercise_serializer.save()
+            # Save deserialized data to the database
+            exercise_serializer.save()
 
-        #     # Return serialized data in the response
-        #     return Response(exercise_serializer.data, status=status.HTTP_200_OK)
+            # Return serialized data in the response
+            return Response(exercise_serializer.data, status=status.HTTP_200_OK)
 
-        # except requests.RequestException as e:
-        #     # Handle API request errors
-        #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        # except Exception as e:
-        #     # Handle other unexpected errors
-        #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except requests.RequestException as e:
+            # Handle API request errors
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except Exception as e:
+            # Handle other unexpected errors
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class TargetView(APIView):
     serializer_class = TargetSerializers
 
     def get(self, request):
-        target = Target.objects.all()
-        serializer = TargetSerializers(target, many=True)
-        return Response(serializer.data)
+        # target = Target.objects.all()
+        # serializer = TargetSerializers(target, many=True)
+        # return Response(serializer.data)
 
-        # try:
-        #     # Fetch data from the API
+        try:
+            # Fetch data from the API
 
-        #     api_data = make_req("https://exercisedb.p.rapidapi.com/exercises/targetList")
-        #     print(api_data)
+            api_data = make_req(
+                "https://exercisedb.p.rapidapi.com/exercises/targetList")
+            # print(api_data)
 
-        #     target_data = [{'name': target_value} for target_value in api_data]
+            target_data = [{'name': target_value} for target_value in api_data]
 
-        #     # Deserialize data using the Serializers
-        #     target_serializer = TargetSerializers(data=target_data, many=True)
-        #     print("==========")
-        #     print(target_serializer)
-        #     target_serializer.is_valid(raise_exception=True)
+            # Deserialize data using the Serializers
+            target_serializer = TargetSerializers(data=target_data, many=True)
+            # print("==========")
+            # print(target_serializer)
+            target_serializer.is_valid(raise_exception=True)
 
-        #     # Save deserialized data to the database
-        #     target_serializer.save()
+            # Save deserialized data to the database
+            target_serializer.save()
 
-        #     # Return serialized data in the response
-        #     return Response(target_serializer.data, status=status.HTTP_200_OK)
+            # Return serialized data in the response
+            return Response(target_serializer.data, status=status.HTTP_200_OK)
 
-        # except requests.RequestException as e:
-        #     # Handle API request errors
-        #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        # except Exception as e:
-        #     # Handle other unexpected errors
-        #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except requests.RequestException as e:
+            # Handle API request errors
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except Exception as e:
+            # Handle other unexpected errors
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class BodyPartView(APIView):
     serializer_class = BodyPartSerializers
 
     def get(self, request):
-        pass
+        # pass
 
-        # try:
-        #     # Fetch data from the API
+        try:
+            # Fetch data from the API
 
-        #     api_data = make_req("https://exercisedb.p.rapidapi.com/exercises/bodyPartList")
-        #     print(api_data)
+            api_data = make_req(
+                "https://exercisedb.p.rapidapi.com/exercises/bodyPartList")
+            # print(api_data)
 
-        #     body_parts = [{'name': body_part} for body_part in api_data]
+            body_parts = [{'name': body_part} for body_part in api_data]
 
-        #     # Deserialize data using the Serializers
-        #     body_part_serializer = BodyPartSerializers(data=body_parts, many=True)
-        #     print("==========")
-        #     print(body_part_serializer)
-        #     body_part_serializer.is_valid(raise_exception=True)
+            # Deserialize data using the Serializers
+            body_part_serializer = BodyPartSerializers(
+                data=body_parts, many=True)
+            # print("==========")
+            # print(body_part_serializer)
+            body_part_serializer.is_valid(raise_exception=True)
 
-        #     # Save deserialized data to the database
-        #     body_part_serializer.save()
+            # Save deserialized data to the database
+            body_part_serializer.save()
 
-        #     # Return serialized data in the response
-        #     return Response(body_part_serializer.data, status=status.HTTP_200_OK)
+            # Return serialized data in the response
+            return Response(body_part_serializer.data, status=status.HTTP_200_OK)
 
-        # except requests.RequestException as e:
-        #     # Handle API request errors
-        #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        # except Exception as e:
-        #     # Handle other unexpected errors
-        #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except requests.RequestException as e:
+            # Handle API request errors
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except Exception as e:
+            # Handle other unexpected errors
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class EquipmentsView(APIView):
     serializer_class = EquipmentSerializers
 
     def get(self, request):
-        try:
-            # Fetch data from the API
-
-            api_data = make_req(
-                "https://exercisedb.p.rapidapi.com/exercises/equipmentList"
-            )
-            print(api_data)
-
-            equipments = [{"name": equipment} for equipment in api_data]
-            # Deserialize data using the Serializers
-            equipment_serializer = EquipmentSerializers(
-                data=equipments, many=True)
-            print("==========")
-            print(equipment_serializer)
-            equipment_serializer.is_valid(raise_exception=True)
-
-            # Save deserialized data to the database
-            equipment_serializer.save()
-
-            # Return serialized data in the response
-            return Response(equipment_serializer.data, status=status.HTTP_200_OK)
-
-        except requests.RequestException as e:
-            # Handle API request errors
-            return Response(
-                {"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-        except Exception as e:
-            # Handle other unexpected errors
-            return Response(
-                {"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+        equipment_objects = Equipment.objects.all()
+        equipment_serializer = self.serializer_class(
+            equipment_objects, many=True)
+        return Response(equipment_serializer.data, status=status.HTTP_200_OK)

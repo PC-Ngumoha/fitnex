@@ -2,7 +2,7 @@ import requests
 
 
 def make_req(url):
-    querystring = {"limit": "2"}
+    querystring = {"limit": "100", "offset": "500"}
 
     headers = {
         "X-RapidAPI-Key": "70d6472d65msh9049d34eadcfccep11be13jsn0852ddb5bc01",
