@@ -21,6 +21,8 @@ const Page = (props: Props) => {
 
 
   const {data, isError, isLoading } = useDataFetch<ExerciseProps[]>({keys: ['excercise'], url: Exercise.list})
+  const {data:body, isError:bodyE, isLoading:bodyL } = useDataFetch<BodyPart[]>({keys: ['bodyPart'], url: Exercise.list})
+
 
   useEffect(() => {
     if (data) {
