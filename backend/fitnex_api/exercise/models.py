@@ -1,8 +1,6 @@
 from django.db import models
+from account.models import FitUser
 
-# Create your models here.
-
-from django.db import models
 
 class BodyPart(models.Model):
     name = models.CharField(max_length=255)
@@ -10,17 +8,20 @@ class BodyPart(models.Model):
     def __str__(self):
         return self.name
 
+
 class Equipment(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
 
+
 class Target(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
+
 
 class Exercise(models.Model):
     name = models.CharField(max_length=255)
@@ -35,3 +36,12 @@ class Exercise(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Log(models.Model):
+    date_created = models.DateField(auto_now_add=True)
+    exercises = models.ManyToManyField(Exercise)
+    user = models.ForeignKey(FitUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.date_created

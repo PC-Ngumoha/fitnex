@@ -136,7 +136,8 @@ class EquipmentsView(APIView):
 
             equipments = [{"name": equipment} for equipment in api_data]
             # Deserialize data using the Serializers
-            equipment_serializer = EquipmentSerializers(data=equipments, many=True)
+            equipment_serializer = EquipmentSerializers(
+                data=equipments, many=True)
             print("==========")
             print(equipment_serializer)
             equipment_serializer.is_valid(raise_exception=True)
