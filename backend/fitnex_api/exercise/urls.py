@@ -6,8 +6,18 @@ router = DefaultRouter(trailing_slash=False)
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("exercise", ExerciseView.as_view(), name="exercise"),
-    path("target", TargetView.as_view(), name="target"),
-    path("body-part", BodyPartView.as_view(), name="body-part"),
-    path("equipment", EquipmentsView.as_view(), name="equipment"),
+    path("exercises", ExerciseView.as_view(), name="exercise"),
+    path("exercises/<int:id>", ExerciseView.as_view(), name="exercise-id"),
+    path("exercises/<str:name>", ExerciseView.as_view(), name="exercise-name"),
+    
+    
+    path("targets", TargetView.as_view(), name="target"),
+    path("targets/<str:name>", TargetView.as_view(), name="target-name"),
+    
+    path("body-parts", BodyPartView.as_view(), name="body-part"),
+    path("body-parts/<str:name>", BodyPartView.as_view(), name="body-part-name"),
+    
+    path("equipments", EquipmentsView.as_view(), name="equipment"),
+    path("equipments/<str:name>", EquipmentsView.as_view(), name="equipment-name"),
+    
 ]
