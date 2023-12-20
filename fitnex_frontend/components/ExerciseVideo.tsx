@@ -13,7 +13,7 @@ const ExerciseVideo = ({ exerciseVideos, name }: Props) => {
     return (
         <div className='mt-10 p-5'>
             <h2 className="scroll-m-20 border-b pb-2 text-3xl capitalize font-semibold tracking-tight first:mt-0">
-                Watch <span className='text-[#ff2625] capitalize'>{name}</span> exercise video
+                Watch <span className='text-blue-500 capitalize'>{name}</span> exercise video
             </h2>
             <div className='flex flex-col lg:flex-row flex-wrap items-center gap-5 mt-5'>
                 {
