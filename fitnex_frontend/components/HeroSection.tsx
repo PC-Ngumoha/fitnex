@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -36,8 +37,12 @@ const HeroSection = (props: Props) => {
                     Take the first step towards a healthier, stronger you! Get started today and discover the power to shape lives through the art of exercise.
                 </p>
                 <div className="flex gap-4 justify-center pt-10">
-                    <button className="bg-blue-500 text-white px-10 py-4 rounded-md text-lg font-bold">Get Started</button>
-                    <button className="bg-gray-600 text-white px-10 py-4 rounded-md text-lg font-bold">Learn More</button>
+                    <Link href="/register">
+                        <button className="bg-blue-500 text-white px-10 py-4 rounded-md text-lg font-bold hover:bg-blue-600">Get Started</button>
+                    </Link>
+                    <Link href="/about">
+                        <button className="bg-gray-600 text-white px-10 py-4 rounded-md text-lg font-bold hover:bg-gray-800">Learn More</button>
+                    </Link>
 
                 </div>
 

@@ -32,6 +32,9 @@ export default function Home() {
 
         {/* <SearchExcercise setExercises={setExercises} setBodyPart={setBodyPart} bodyPart={bodyPart} /> */}
 
+      </MaxWidthWrapper>
+
+      <div>
         <HeroSection />
         <OurFeatures />
         <Customizable />
@@ -39,9 +42,7 @@ export default function Home() {
         <MadeFor />
         <Faqs />
         <NeedHelp />
-      </MaxWidthWrapper>
-
-
+      </div>
     </>
   )
 }

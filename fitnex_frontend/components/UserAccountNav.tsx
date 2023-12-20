@@ -1,8 +1,8 @@
 "use client"
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuShortcut } from './ui/dropdown-menu'
 
-import { LogOut } from 'lucide-react'
+import { LogOut, User } from 'lucide-react'
 import UserAvatar from './UserAvatar'
 
 import { useRouter } from "next/navigation"
@@ -25,16 +25,25 @@ const UserAccountNav = ({ user }: Props) => {
       console.error("Error during logout:", error);
     }
   };
+
+  const goToAccount = () => {
+    router.push("/account/me");
+  };
+
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <UserAvatar user={user} />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="w-40">
           {/* <div className="flex items-center justify-start gap-2 p-2"> */}
           {/* user details */}
           {/* </div> */}
+          <DropdownMenuItem onSelect={goToAccount} className="flex items-center justify-center cursor-pointer">
+            <User className="mr-2 h-4 w-4" />
+            <span>My Account</span>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onSelect={logout}
             className="flex items-center justify-center text-red-600 cursor-pointer"

@@ -1,16 +1,16 @@
 import React from 'react'
 import Image from 'next/image'
 import { OurFeaturesData } from '@/lib/constatData'
-
+import Link from 'next/link'
 
 type Props = {}
 
 const OurFeatures = (props: Props) => {
   return (
 
-    <div className="w-full h-fit">
+    <div className="">
       <div className="flex flex-col md:flex-row items-center justify-center pb-10">
-        <div className="p-5 justify-center">
+        <div className="p-5 justify-center md:w-1/3">
           <div className="
                 bg-gradient-to-r
                 from-blue-800
@@ -28,9 +28,11 @@ const OurFeatures = (props: Props) => {
             Providing high-quality instructional content for exercises and nutrition to ensure trainer safety and effectiveness in achieving their fitness goals.
 
           </div>
-          <button className="bg-blue-500 text-white p-4 justify-center flex md:w-1/3 rounded-lg hover:bg-blue-600">
-            Get Started
-          </button>
+          <Link href="/register">
+            <button className="bg-blue-500 text-white p-4 justify-center flex md:w-1/3 rounded-lg hover:bg-blue-600">
+              Get Started
+            </button>
+          </Link>
         </div>
 
 
@@ -61,7 +63,7 @@ const OurFeatures = (props: Props) => {
 
         </h2>
 
-        <div className="grid grid-cols-1 p-4 md:grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 p-4 md:grid md:grid-cols-3 gap-4 md:px-40">
           {OurFeaturesData.map((feature, index) => (
             <div
               key={index}

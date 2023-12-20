@@ -30,7 +30,7 @@ export const OurFeaturesData: Feature[]  = [
         name: "Guidance",
         description:
             "Fitnex provides comprehensive information on exercises, proper techniques, and nutritional guidance to educate users on holistic well-being.",
-        image: "/images/icon-guidance.png",
+        image: "/images/icon-guidance2.png",
         alt: "Customizable",
     },
     {

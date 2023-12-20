@@ -17,7 +17,7 @@ const HeroBanner = (props: Props) => {
                 Sweat, Smile and Repeat 😉
             </blockquote>
 
-            <h1 className="text-9xl font-extrabold tracking-tight opacity-30 text-gray-500 hidden md:block">
+            <h1 className="text-9xl font-extrabold tracking-tight opacity-30 text-gray-500 hidden md:block leading-[7rem]">
                 Exercise<br />Now
             </h1>
             <Image src="/hero-banner.jpg" alt="hero-banner" width={500} height={500} className='absolute right-[40px] top-0 w-[500px] h-[600px] -mt-[200px] rounded-bl-3xl hidden md:block' />

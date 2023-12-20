@@ -8,7 +8,7 @@ const Customizable = (props: Props) => {
 
     return (
         <div className="flex p-10 flex-col md:flex-row md:justify-evenly">
-            <div className="flex-col md:flex-row gap-6 flex items-center justify-center">
+            <div className="flex-col md:flex-row gap-6 md:px-10 flex">
                 <div className="w-full">
                     <video className="rounded-xl" autoPlay muted loop>
                         <source src="/content/video-3.mp4" type="video/mp4" />
@@ -32,15 +32,14 @@ const Customizable = (props: Props) => {
                     </div>
 
                     <div className="md:px-20 space-y-6 flex-col items-center justify-center">
-                        <div className="text-lg flex items-center gap-5">
+                        <div className="text-lg flex items-center gap-4">
                             <Image
-                                src="/images/icon-target3.png"
+                                src="/images/icon-target2.png"
                                 alt="feature-1"
                                 width={70}
                                 height={70}
-                                className="md:order-2"
                             />
-                            <div className="flex flex-col gap-2 md:order-1">
+                            <div className="flex flex-col gap-2">
                                 Choose from an incredible amount of exercises from weight lifting, cardio, boxing, and much more.
                             </div>
                         </div>
@@ -51,9 +50,8 @@ const Customizable = (props: Props) => {
                                 alt="feature-1"
                                 width={70}
                                 height={70}
-                                className="md:order-2"
                             />
-                            <div className="flex flex-col gap-2 md:order-1">
+                            <div className="flex flex-col gap-2">
                             Build your workout plans around the equipment you have available.
                             </div>
                         </div>
@@ -64,9 +62,8 @@ const Customizable = (props: Props) => {
                                 alt="feature-1"
                                 width={70}
                                 height={70}
-                                className="md:order-2"
                             />
-                            <div className="flex flex-col gap-2 md:order-1">
+                            <div className="flex flex-col gap-2">
                             Gain valuable insights into your stats page and keep track of your progress.
                             </div>
                         </div>
@@ -77,9 +74,8 @@ const Customizable = (props: Props) => {
                                 alt="feature-1"
                                 width={70}
                                 height={70}
-                                className="md:order-2"
                             />
-                            <div className="flex flex-col gap-2 md:order-1">
+                            <div className="flex flex-col gap-2">
                             Pick your training based on the Body parts you want to work on today.
                             </div>
                         </div>

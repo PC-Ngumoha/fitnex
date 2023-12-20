@@ -1,5 +1,7 @@
 import { MadeForFeatures } from '@/lib/constatData'
+// import { Link } from 'lucide-react'
 import React from 'react'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -33,7 +35,9 @@ const MadeFor = (props: Props) => {
                 gap-4
                 border
                 rounded-xl
-                p-4 
+                p-4
+                w-96
+                h-96
                 ">
 
                             <div className="text-2xl text-blue-500 pb-4">{feature.name}</div>
@@ -41,14 +45,12 @@ const MadeFor = (props: Props) => {
                             <div className="text-xl text-blue-300">{feature.exp}</div>
                             <div className="text-xl">{feature.description}</div>
 
-                            <div className="bg-blue-500 text-white p-4 border rounded-xl items-center justify-center text-center">
-                                Get Started
-                            </div>
-
-
-
+                            <Link href="/register">
+                                <div className="bg-blue-500 text-white p-4 border rounded-xl items-center justify-center text-center hover:bg-blue-600">
+                                    Get Started
+                                </div>
+                            </Link>
                         </div>
-
                     </div>
                 ))}
 
