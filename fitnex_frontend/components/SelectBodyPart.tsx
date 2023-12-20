@@ -1,8 +1,9 @@
 import React from 'react'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from './ui/select'
+import { BodyPartProps } from '@/lib/types'
 
 type Props = {
-    bodyParts: any
+    bodyParts: BodyPartProps[]
 }
 
 const SelectBodyPart = ({ bodyParts }: Props) => {
@@ -18,8 +19,8 @@ const SelectBodyPart = ({ bodyParts }: Props) => {
                     <SelectGroup>
                         <SelectLabel>Body Parts</SelectLabel>
                         {
-                            bodyParts.map((bodyPart: any, index: any) => (
-                                <SelectItem key={index} value={bodyPart}>{bodyPart}</SelectItem>
+                            bodyParts.map((bodyPart: BodyPartProps, index: any) => (
+                                <SelectItem key={bodyPart.id} value={bodyPart.name}>{bodyPart.name}</SelectItem>
                             ))
                         }
                     </SelectGroup>

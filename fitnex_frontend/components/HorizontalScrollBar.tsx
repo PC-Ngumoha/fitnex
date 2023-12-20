@@ -1,12 +1,13 @@
+import { BodyPartProps, EquipmentProps, ExerciseProps, TargetProps } from '@/lib/types'
 import BodyPart from './BodyPart'
 import ExerciseCard from './ExerciseCard'
 import { ScrollArea, ScrollBar } from './ui/scroll-area'
 
 type Props = {
-  data: any,
-  bodyPart?: any,
-  setBodyPart?: any,
-  isBodyPart?: any
+  data: BodyPartProps[] | TargetProps[] | EquipmentProps[],
+  bodyParts: BodyPartProps[],
+  setBodyParts?: any,
+  isBodyPart?: boolean
 }
 
 type PartsImage = {
@@ -63,14 +64,14 @@ const partImage: PartsImage[] = [
   },
 ]
 
-const HorizontalScrollBar = ({ data, setBodyPart, bodyPart, isBodyPart }: Props) => {
-  console.log(data)
+const HorizontalScrollBar = ({ data, setBodyParts, bodyParts, isBodyPart }: Props) => {
+  // console.log(data)
   return (
     <ScrollArea className=" whitespace-nowrap rounded-md border">
       <div className="flex w-max space-x-4 p-4">
-        {data.map((item: any, index:any) => (
-          <div key={item.id || item} itemID={item.id || item} title={item.id || item}>
-            {isBodyPart ? <BodyPart item={item} bodyPart={bodyPart} setBodyPart={setBodyPart} image={partImage[index]?.image} /> : <ExerciseCard exercise={item} />}
+        {data.map((item, index) => (
+          <div key={item.id}>
+             <BodyPart item={item} bodyPart={bodyParts} setBodyPart={setBodyParts} image={partImage[index]?.image} /> 
           </div>
         ))}
       </div>

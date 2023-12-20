@@ -1,40 +1,51 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import Image from 'next/image';
 import ExerciseCard from '@/components/ExerciseCard';
+import Loader from '@/components/Loader';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import SelectBodyPart from '@/components/SelectBodyPart';
-import { fetchData, exerciseOptions } from '@/lib/utils';
-import { Exercise } from '@/lib/network';
-import { BodyPart, ExerciseProps } from '@/lib/types';
 import { useDataFetch } from '@/components/hooks/useDataFetch';
+import { BodyParts, Exercise } from '@/lib/network';
+import { BodyPartProps, ExerciseProps } from '@/lib/types';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 type Props = {
   exercise: ExerciseProps,
-  body_part: BodyPart
+  body_part: BodyPartProps
 };
 
 
 const Page = (props: Props) => {
   const [exercises, setExercises] = useState<ExerciseProps[]>([]);
-  const [bodyParts, setBodyParts] = useState<BodyPart[]>([]);
+  const [bodyParts, setBodyParts] = useState<BodyPartProps[]>([]);
 
 
-  const {data, isError, isLoading } = useDataFetch<ExerciseProps[]>({keys: ['excercise'], url: Exercise.list})
-  const {data:body, isError:bodyE, isLoading:bodyL } = useDataFetch<BodyPart[]>({keys: ['bodyPart'], url: Exercise.list})
+  const { data: exercise, isError: exerciseError, isLoading: exerciseLoading } = useDataFetch<ExerciseProps[]>({ keys: ['excercise', 'v2.exercisedb.io'], url: Exercise.list })
+  const { data: bodyPart, isError: bodyPartError, isLoading: bodyPartLoading } = useDataFetch<BodyPartProps[]>({ keys: ['bodyPart'], url: BodyParts.list })
 
-
+  // get exercise
   useEffect(() => {
-    if (data) {
-      setExercises(data)
+    if (exercise) {
+      setExercises(exercise)
     }
-  
-  }, [data])
-  console.log(data)
-  if (isError) {
-    console.log(isError)
+
+  }, [exercise])
+  // get body parts
+  useEffect(() => {
+    if (bodyPart) {
+      setBodyParts(bodyPart)
+    }
+
+  }, [bodyPart])
+  if (exerciseError) {
+    console.error(exerciseError);
   }
 
+  if (bodyPartError) {
+    console.error(bodyPartError);
+  }
+  if (exerciseLoading) return (<Loader />)
+  if (bodyPartLoading) return (<Loader />)
   return (
     <MaxWidthWrapper>
       <div className='flex items-center justify-center'>
@@ -54,8 +65,10 @@ const Page = (props: Props) => {
       </p>
       <SelectBodyPart bodyParts={bodyParts} />
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5'>
-        {exercises.map((item: any) => (
-          <ExerciseCard key={item.id} exercise={item} />
+        {exercises.map((item: ExerciseProps) => (
+          <>
+            <ExerciseCard key={item.id} exercise={item} />
+          </>
         ))}
       </div>
     </MaxWidthWrapper>

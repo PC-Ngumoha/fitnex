@@ -9,7 +9,7 @@ type Props = {
 
 const ExerciseVideo = ({ exerciseVideos, name }: Props) => {
     if (!exerciseVideos.length) return 'Loading....'
-    console.log(exerciseVideos)
+    // console.log(exerciseVideos)
     return (
         <div className='mt-10 p-5'>
             <h2 className="scroll-m-20 border-b pb-2 text-3xl capitalize font-semibold tracking-tight first:mt-0">

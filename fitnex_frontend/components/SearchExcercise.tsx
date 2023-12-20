@@ -4,53 +4,45 @@ import { Input } from './ui/input'
 import { Button } from './ui/button'
 import HorizontalScrollBar from './HorizontalScrollBar'
 import { exerciseOptions, fetchData } from '@/lib/utils'
+import { BodyPartProps, EquipmentProps, ExerciseProps, TargetProps } from '@/lib/types'
+import { useDataFetch } from './hooks/useDataFetch'
+import { BodyParts, Equipments, Exercise, Targets } from '@/lib/network'
 
 type Props = {
-  setExercises: any,
-  bodyPart: any,
-  setBodyPart: any
+  setExercises: (exercise:ExerciseProps[]) => void,
+  bodyPart: BodyPartProps[],
+  setBodyPart: (bodyPart: BodyPartProps[]) => void
 }
 
 
 const SearchExcercise = ({ setExercises, bodyPart, setBodyPart }: Props) => {
 
-  const [search, setSearch] = useState('')
 
-  const [bodyParts, setBodyParts] = useState<any>([])
   // fetch categories as soon as the page loads
+  const [bodyParts, setBodyParts] = useState<BodyPartProps[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const { data: exercise, isError: exerciseError, isLoading: exerciseLoading } = useDataFetch<ExerciseProps[]>({ keys: ['exercise', 'v2.exercisedb.io'], url: Exercise.list });
+  const { data: bodyPartList, isError: bodyPartsError, isLoading: bodyPartLoading } = useDataFetch<BodyPartProps[]>({ keys: ['bodyPart'], url: BodyParts.list });
+
 
   useEffect(() => {
-    const fetchExercisesData = async () => {
-      const bodyPartsData = await fetchData({
-        url: 'https://exercisedb.p.rapidapi.com/exercises/bodyPartList',
-        options: exerciseOptions
-      })
-      setBodyParts(['all', ...bodyPartsData])
+    if (bodyPartList) {
+      setBodyParts(bodyPartList);
     }
+  }, [bodyPartList]);
 
-    fetchExercisesData()
-  }, [])
+  const handleSearch = () => {
+    if (exercise) {
+      const searchedExercise = exercise.filter((exercise) =>
+        exercise.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        exercise.target_data.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        exercise.bodyPart_data.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        exercise.equipment_data.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
-
-  const handleSearch = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const searchTerm = e.target;
-
-    if (searchTerm) {
-      const exerciseData = await fetchData({
-        url: 'https://exercisedb.p.rapidapi.com/exercises',
-        options: exerciseOptions
-      });
-      // console.log(exerciseData)
-      // const searchedExcercise = exerciseData.filter((exercise: any) =>
-      //   exercise.name.toLowerCase().includes(searchTerm) ||
-      //   exercise.target.toLowerCase().includes(searchTerm) ||
-      //   exercise.bodyPart.toLowerCase().includes(searchTerm) ||
-      //   exercise.equipment.toLowerCase().includes(searchTerm)
-      // );
-
-      // console.log(searchedExcercise)
-      setExercises(exerciseData);
-      setSearch('');
+      setExercises(searchedExercise);
+      setSearchTerm('')
     }
   };
 
@@ -62,13 +54,13 @@ const SearchExcercise = ({ setExercises, bodyPart, setBodyPart }: Props) => {
       </h1>
 
       <div className="flex items-center justify-center mb-10 gap-2">
-        <Input value={search} onChange={(e) => setSearch(e.target.value.toLowerCase())} type="text" placeholder='Search Excercise' className='w-full lg:w-[500px] lg:h-[50px] rounded-full space-x-2 border-2 p-[10px]' />
+        <Input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value.toLowerCase())} type="text" placeholder='Search Excercise' className='w-full lg:w-[500px] lg:h-[50px] rounded-full space-x-2 border-2 p-[10px]' />
         <Button onClick={handleSearch} className='w-[100px] h-[50px] rounded-full bg-black opacity-2 text-white'>Search</Button>
 
       </div>
 
       <div className='w-[320px] md:w-[100%]'>
-        <HorizontalScrollBar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart} isBodyPart={true} />
+        <HorizontalScrollBar data={bodyParts} bodyParts={bodyPart} setBodyParts={setBodyPart} isBodyPart={true} />
       </div>
     </div>
   )

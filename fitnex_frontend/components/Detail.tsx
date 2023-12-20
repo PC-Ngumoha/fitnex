@@ -1,35 +1,27 @@
+import { ExcerciseDetail } from '@/lib/types';
 import Image from 'next/image';
-import React from 'react'
-import { Button } from './ui/button';
 
-export type ExcerciseDetail = {
-    bodyPart: string,
-    gifUrl: string,
-    name: string,
-    target: string,
-    equipment: string,
-    id: string,
-}
+
 type Props = {
     exerciseDetail: ExcerciseDetail
 }
 
 const Detail = ({ exerciseDetail }: Props) => {
-    const { bodyPart, gifUrl, name, target, equipment } = exerciseDetail;
-    // /assets/icons/gym.png
+    const { bodyPart_data, equipment_data, target_data, gifUrl, name, target_id, instructions, secondaryMuscles } = exerciseDetail;
+
 
     const extraDetail = [
         {
             icon: '/assets/icons/body-part.png',
-            name: bodyPart,
+            name: bodyPart_data,
         },
         {
             icon: '/assets/icons/target.png',
-            name: target,
+            name: equipment_data,
         },
         {
             icon: '/assets/icons/equipment.png',
-            name: equipment,
+            name: target_data,
         }
     ]
     return (
@@ -44,7 +36,15 @@ const Detail = ({ exerciseDetail }: Props) => {
                         {name}
                     </h2>
                     <p className="leading-7 [&:not(:first-child)]:mt-6 ">
-                        Exercise &quot;Keep You Strong&quot; {name} is one of the most effective workouts for targeting your {target}. Engaging in this exercise not only enhances your physical strength but also contributes to mood improvement and increased energy levels.
+                        Exercise &quot;Keep You Strong&quot; {name} is one of the most effective workouts for targeting your {target_data}. Engaging in this exercise not only enhances your physical strength but also contributes to mood improvement and increased energy levels.
+                    </p>
+
+                    <p className="leading-7 [&:not(:first-child)]:mt-6 prose">
+                        {instructions}
+                    </p>
+
+                    <p className="leading-7 [&:not(:first-child)]:mt-6 prose">
+                        {secondaryMuscles}
                     </p>
                     {
                         extraDetail.map((item, index) => (

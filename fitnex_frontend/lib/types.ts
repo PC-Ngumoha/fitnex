@@ -1,23 +1,33 @@
 
 export type ExerciseProps = {
-    id: number,
-    name: string,
-    gifUrl: string,
-    secondaryMuscles: string[],
-    instructions: string[],
-}[]
+    id: number;
+    bodyPart_id: number;
+    target_id: number;
+    name: string;
+    gifUrl: string;
+    equipments_id: number;
+    bodyPart_data: string,
+    target_data: string;
+    equipment_data: string;
+};
 
-export type BodyPart = {
-    id: number,
-    name: string,
-}[];
+export type ExcerciseDetail = ExerciseProps & {
+    
+    secondaryMuscles: string[];
+    instructions: string[];
+};
 
-export type Target = {
+export type BodyPartProps = {
     id: number,
     name: string,
-}[];
+};
 
-export type Equipment = {
+export type TargetProps = {
     id: number,
     name: string,
-}[];
+};
+
+export type EquipmentProps = {
+    id: number,
+    name: string,
+};
