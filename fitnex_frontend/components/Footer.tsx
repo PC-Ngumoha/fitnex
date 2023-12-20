@@ -11,7 +11,7 @@ const Footer = (props: Props) => {
         return date.getFullYear();
     }
     return (
-        <footer className='flex flex-col md:flex-row items-center justify-center p-8 relative' style={{ backgroundImage: "url('/footer.jpg')", backgroundSize: "cover", backgroundPosition: "center", position: "relative" }}>
+        <footer className='flex flex-col md:flex-row items-center justify-center p-8 relative bottom-0' style={{ backgroundImage: "url('/footer.jpg')", backgroundSize: "cover", backgroundPosition: "center", position: "relative" }}>
             <div className='absolute inset-0 bg-black opacity-50'></div>
             <div className='flex flex-col items-center justify-center gap-4 text-white relative z-10'>
                 <GitPullRequestArrowIcon className='h-5 w-5 animate-bounce' />

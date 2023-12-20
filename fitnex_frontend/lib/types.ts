@@ -12,7 +12,7 @@ export type ExerciseProps = {
 };
 
 export type ExcerciseDetail = ExerciseProps & {
-    
+
     secondaryMuscles: string[];
     instructions: string[];
 };
@@ -31,3 +31,14 @@ export type EquipmentProps = {
     id: number,
     name: string,
 };
+
+
+export type Feature = {
+    name: string,
+    time?: string,
+    exp?: string,
+    image?: string,
+    alt?: string,
+    color? : string,
+    description: string,
+}

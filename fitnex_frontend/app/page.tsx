@@ -1,19 +1,20 @@
+"use client"
+
 // import Exercises from '@/components/Exercises'
 import HeroBanner from '@/components/HeroBanner'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
-import SearchExcercise from '@/components/SearchExcercise'
 import { BodyPartProps, ExerciseProps } from '@/lib/types'
-import Image from 'next/image'
 
-// new imports for the home page
-import HeroSection from "./index/hero-section/page";
-// import Navbar from "./index/navbar/page";
-import OurFeatures from "./index/our-features/page";
-import Customizable from "./index/customizable/page";
-import MadeSimple from "./index/made-simple/page";
-import MadeFor from "./index/made-for/page";
-import Faqs from "./index/faqs/page";
-import NeedHelp from "./index/need-help/page";
+
+import { useState } from 'react'
+import SearchExcercise from '@/components/SearchExcercise'
+import HeroSection from '@/components/HeroSection'
+import OurFeatures from '@/components/OurFeatures'
+import Customizable from '@/components/Customizable'
+import MadeSimple from '@/components/MadeSimple'
+import MadeFor from '@/components/MadeFor'
+import Faqs from '@/components/Faqs'
+import NeedHelp from '@/components/NeedHelp'
 
 
 export default function Home() {
@@ -29,10 +30,8 @@ export default function Home() {
       <MaxWidthWrapper>
         <HeroBanner />
 
-        <SearchExcercise />
-      </MaxWidthWrapper>
+        {/* <SearchExcercise setExercises={setExercises} setBodyPart={setBodyPart} bodyPart={bodyPart} /> */}
 
-      <div>
         <HeroSection />
         <OurFeatures />
         <Customizable />
@@ -40,7 +39,9 @@ export default function Home() {
         <MadeFor />
         <Faqs />
         <NeedHelp />
-      </div>
+      </MaxWidthWrapper>
+
+
     </>
   )
 }

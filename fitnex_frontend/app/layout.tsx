@@ -4,7 +4,6 @@ import './globals.css'
 import { Provider } from '@/components/Provider'
 import { Toaster } from '@/components/ui/toaster'
 import Navbar from '@/components/Navbar'
-import Footer from "./index/footer/page";
 
 import Footer from '@/components/Footer'
 
@@ -28,7 +27,6 @@ export default function RootLayout({
           {children}
           <Toaster />
         </Provider>
-        <Footer />
 
         <Footer />
       </body>
