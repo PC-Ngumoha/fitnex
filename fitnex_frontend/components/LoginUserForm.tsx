@@ -15,6 +15,7 @@ import { Auth } from '@/lib/network';
 import { useForm } from 'react-hook-form';
 import { toast } from './ui/use-toast';
 import Link from 'next/link';
+import { useStore } from '@/store';
 
 type Props = {}
 
@@ -24,6 +25,7 @@ type UserRegInput = z.infer<typeof loginUserSchema>
 const LoginUserForm = (props: Props) => {
 
     const router = useRouter();
+    const store = useStore();
 
     const { mutate: registerUser, isPending } = useMutation({
         mutationFn: async (userData: UserRegInput) => {
@@ -45,12 +47,13 @@ const LoginUserForm = (props: Props) => {
 
     function onSubmit(userData: UserRegInput) {
         registerUser(userData, {
-            onSuccess: () => {
+            onSuccess: (token) => {
+                store.setAuthUser(token)
                 toast({
                     title: "Success",
                     description: "Logged In successfully",
                 });
-                router.push('/');
+                router.push('/exercise');
             },
             onError: (error: any) => {
                 toast({
@@ -63,6 +66,8 @@ const LoginUserForm = (props: Props) => {
                 return;
             }
         });
+        const user = store.authUser;
+        console.log(user)
     }
     return (
         <div className='w-full max-w-md mx-auto'>
@@ -89,7 +94,7 @@ const LoginUserForm = (props: Props) => {
                             <FormItem className='mb-4'>
                                 <FormLabel className='text-xl'>Password</FormLabel>
                                 <FormControl>
-                                    <Input placeholder='Enter a secret password' {...field} type='password' autoComplete='false'/>
+                                    <Input placeholder='Enter a secret password' {...field} type='password' autoComplete='off'/>
                                 </FormControl>
                             </FormItem>
                         )}

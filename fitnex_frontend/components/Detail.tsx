@@ -32,20 +32,33 @@ const Detail = ({ exerciseDetail }: Props) => {
                 </div>
 
                 <div className='gap-5'>
-                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 capitalize text-primary">
                         {name}
                     </h2>
                     <p className="leading-7 [&:not(:first-child)]:mt-6 ">
-                        Exercise &quot;Keep You Strong&quot; {name} is one of the most effective workouts for targeting your {target_data}. Engaging in this exercise not only enhances your physical strength but also contributes to mood improvement and increased energy levels.
+                        Exercise &quot;Keep You Strong&quot; <span className='text-primary font-semibold'>{name}</span> is one of the most effective workouts for targeting your <span className='text-primary font-semibold'>{target_data}</span>. Engaging in this exercise not only enhances your physical strength but also contributes to mood improvement and increased energy levels.
                     </p>
 
-                    <p className="leading-7 [&:not(:first-child)]:mt-6 prose">
-                        {instructions}
-                    </p>
+                    <div className="mt-6 prose">
+                        <h3 className="text-xl md:text-2xl font-semibold text-primary mb-2 underline italic">Instructions</h3>
+                        <ul className="list-none md:list-disc list-outside text-left">
+                            {instructions?.map((item: string, index) => (
+                                <li key={index} className="mb-2">{item}</li>
+                            ))}
+                        </ul>
+                    </div>
 
-                    <p className="leading-7 [&:not(:first-child)]:mt-6 prose">
-                        {secondaryMuscles}
-                    </p>
+                    <div className="mt-6 prose">
+                        <h3 className="text-xl md:text-2xl font-semibold text-primary mb-2 underline italic">Secondary Muscles</h3>
+                        <ul className="list-none md:list-disc list-outside capitalize text-left">
+                            {secondaryMuscles?.map((item: string, index) => (
+                                <li key={index} className="mb-2">{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+
+
+                    <div className='mt-8' aria-label='hidden' />
                     {
                         extraDetail.map((item, index) => (
                             <div key={index} className='flex items-center gap-2 mb-2 self-center'>

@@ -12,7 +12,7 @@ const Page = (props: Props) => {
             </h1>
             <div className="flex items-center justify-center p-4 border-none bg-secondary rounded-md shadow-md w-full">
                 <InfoIcon className='w-8 h-8 mr-3 text-gray-400' />
-                <div className="text-gray-800 dark: text-white">
+                <div className="text-gray-800 dark:text-white">
                     Enter your details to login into Fitnex
                 </div>
             </div>

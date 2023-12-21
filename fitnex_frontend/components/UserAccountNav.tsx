@@ -1,14 +1,15 @@
 "use client"
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuShortcut } from './ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 
 import { LogOut, User } from 'lucide-react'
 import UserAvatar from './UserAvatar'
 
 import { useRouter } from "next/navigation"
+import { User as UserProps } from '@/lib/types'
 
 type Props = {
-  user: any
+  user: UserProps | any | null
 }
 
 

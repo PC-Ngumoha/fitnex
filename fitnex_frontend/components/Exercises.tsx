@@ -16,7 +16,7 @@ type Props = {
 const Exercises = ({ exercises, setExercises, bodyPart }: Props) => {
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 15;
+  const itemsPerPage = 9;
 
   const { data: exercise, isError: exerciseError, isLoading: exerciseLoading } = useDataFetch<ExerciseProps[]>(
     { keys: ['excercise', 'v2.exercisedb.io'], url: Exercise.list }

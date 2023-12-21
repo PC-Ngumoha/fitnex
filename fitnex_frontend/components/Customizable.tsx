@@ -7,8 +7,8 @@ const Customizable = (props: Props) => {
 
 
     return (
-        <div className="flex p-10 flex-col md:flex-row md:justify-evenly">
-            <div className="flex-col md:flex-row gap-6 md:px-10 flex">
+        <div className="flex p-5 flex-col md:flex-row md:justify-evenly">
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
                 <div className="w-full">
                     <video className="rounded-xl" autoPlay muted loop>
                         <source src="/content/video-3.mp4" type="video/mp4" />
@@ -31,7 +31,7 @@ const Customizable = (props: Props) => {
                         Fully Customizable Experience
                     </div>
 
-                    <div className="md:px-20 space-y-6 flex-col items-center justify-center">
+                    <div className="space-y-6 flex-col items-center justify-center">
                         <div className="text-lg flex items-center gap-4">
                             <Image
                                 src="/images/icon-target2.png"

@@ -9,7 +9,7 @@ type Props = {}
 
 const MadeFor = (props: Props) => {
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center mt-16">
             <div className="text-4xl text-center md:text-6xl font-bold bg-gradient-to-r from-white to-gray-500 bg-clip-text
      text-transparent md:pb-10  ">
                 Who&apos;s Fitnex Made For?
