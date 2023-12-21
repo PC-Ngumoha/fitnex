@@ -6,6 +6,8 @@ import SignInButton from './SignInButton'
 import UserAccountNav from './UserAccountNav'
 import { X } from 'lucide-react'
 import { Button } from './ui/button'
+import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuContent, DropdownMenu, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 // import { Separator } from "@/components/ui/separator"
 
 type Props = {}
@@ -20,69 +22,110 @@ const Navbar = (props: Props) => {
     };
 
     return (
-        <nav className="fixed inset-x-0 top-0 bg-white dark:bg-gray-900 z-[10] h-fit border-b border-zinc-300 py-2">
-            <div className='flex items-center justify-center h-full gap-2 px-8 mx-auto sm:justify-between max-w-7xl'>
-                <Link href="/" className='items-center hidden gap-2 sm:flex'>
-                    <p className='rounded-lg p-4 py-1 text-3xl font-bold transition-all hover:translate-y-[2px] md:block bg-gradient-to-r from-blue-500 to-blue-100 bg-clip-text text-transparent'>
-                        Fitnex
-                    </p>
-                    <p className='text-yellow-500'>beta</p>
+        <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
+        <Sheet>
+            <SheetTrigger asChild>
+            <Button className="lg:hidden" size="icon" variant="outline">
+                <MenuIcon className="h-6 w-6" />
+                <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+            </SheetTrigger>
+            <SheetContent side="left">
+            <Link href="/">
+                <span className="sr-only">Fitnex</span>
+            </Link>
+            <div className="grid gap-2 py-6">
+                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/">
+                Home
                 </Link>
-                <div className='flex items-center'>
-                    <Link href="/" className='mr-3 rounded-lg px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'>Home</Link>
-                    <Link href="/about" className='mr-3 rounded-lg px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'>About Us</Link>
-                    <Link href="/blog" className='mr-3 rounded-lg px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white text-gray-400'>Blog</Link>
-                    <Link href="/faqs" className='mr-3 rounded-lg px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'>FAQ</Link>
-                    <Link href="/contact" className='mr-3 rounded-lg px-2 py-1 text-sm font-semibold transition-all hover:translate-y-[2px] md:block dark:border-white'>Contact</Link>
-
-                    {session && (
-
-                        <>
-                            <Link href="/exercise">
-                                    <Button variant="outline" className="bg-gradient-to-r from-blue-500 to-blue-800 justify-center flex rounded-lg hover:bg-blue-500">
-                                    View Exercises
-                                    </Button>
-                            </Link>
-                        </>
-                    )}
-                    <ThemeToggle className="mr-3" />
-                    <div className='flex items-center'>
-                        {session ? <UserAccountNav user={session} /> : <SignInButton />}
-                    </div>
-                    <Link href="/register">
-                        <Button variant="secondary">Signup</Button>
-                    </Link>
-                    <Link href="/login">
-                        <Button variant="outline" className='bg-blue-500 hover:bg-gradient-to-r from-blue-500 to-blue-800'>Login</Button>
-                    </Link>
-                </div>
+                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/about">
+                About
+                </Link>
+                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/blog">
+                Blog
+                </Link>
+                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/faqs">
+                FAQs
+                </Link>
+                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/contact">
+                Contact
+                </Link>
             </div>
-
-            {/* Hamburger icon for smaller screens */}
-            {/* <div className='md:hidden'>
-                <button onClick={() => setMenuOpen(!menuOpen)}>
-                    <X className="h-6 w-6" aria-hidden="true"  />
-                </button>
-            </div> */}
-            {/* Mobile menu */}
-            {/* {menuOpen && (
-                <MobileMenu
-                    setMenuOpen={setMenuOpen}
-                    
-                    onItemClick={() => { handleMenuItemClick(); }}
-                />
-            )} */}
-        </nav>
-    )
+            </SheetContent>
+        </Sheet>
+        <Link className="mr-6 hidden lg:flex rounded-lg p-4 py-1" href="/">
+            <span className='text-3xl font-bold transition-all hover:translate-y-[2px] md:block bg-gradient-to-r from-blue-500 to-blue-100 bg-clip-text text-transparent'>
+                Fitnex
+                </span>
+            <p className='text-yellow-500'>beta</p>
+        </Link>
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="hidden lg:flex">
+                <MenuIcon className="h-6 w-6 mr-2" />
+                Menu
+            </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+            <DropdownMenuItem asChild>
+                <Link className="w-full h-full" href="/">
+                Home
+                </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+                <Link className="w-full h-full" href="/about">
+                About
+                </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+                <Link className="w-full h-full" href="/blog">
+                Blog
+                </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+                <Link className="w-full h-full" href="/faqs">
+                FAQs
+                </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+                <Link className="w-full h-full" href="/contact">
+                Contact
+                </Link>
+            </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+        <div className="ml-auto flex items-center gap-4">
+            <Link href="/exercise">
+            <Button className="hidden md:flex" variant="outline">
+            View Exercises
+            </Button>
+            </Link>
+            <ThemeToggle />
+            <UserAccountNav />
+        </div>
+        </header>
+  )
 }
 
-const MobileMenu = ({ setMenuOpen, onItemClick }: { setMenuOpen: (i: boolean) => void, onItemClick: () => void }) => {
-    return (
-        <>
-        
-        </>
-    )
+function MenuIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="18" y2="18" />
+    </svg>
+  )
 }
-
 
 export default Navbar
