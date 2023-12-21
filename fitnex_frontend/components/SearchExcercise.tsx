@@ -1,12 +1,11 @@
 "use client"
-import React, { useEffect, useState } from 'react'
-import { Input } from './ui/input'
-import { Button } from './ui/button'
+import { BodyParts, Exercise } from '@/lib/network'
+import { BodyPartProps, ExerciseProps } from '@/lib/types'
+import { useEffect, useState } from 'react'
 import HorizontalScrollBar from './HorizontalScrollBar'
-import { exerciseOptions, fetchData } from '@/lib/utils'
-import { BodyPartProps, EquipmentProps, ExerciseProps, TargetProps } from '@/lib/types'
 import { useDataFetch } from './hooks/useDataFetch'
-import { BodyParts, Equipments, Exercise, Targets } from '@/lib/network'
+import { Button } from './ui/button'
+import { Input } from './ui/input'
 
 type Props = {
   setExercises: (exercise:ExerciseProps[]) => void,
