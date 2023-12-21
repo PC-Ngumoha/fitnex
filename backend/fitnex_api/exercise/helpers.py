@@ -91,3 +91,29 @@
 #         except Exception as e:
 #             # Handle other unexpected errors
 #             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# class ExerciseView(APIView):
+#     serializer_class = ExerciseSerializers
+#     pagination_class = PageNumberPagination
+#     page_size = 10
+
+#     def get(self, request, name=None, id=None):
+#         if id:
+
+#             # Get exercise by id
+#             exercise = Exercise.objects.get(id=id)
+#             serializer = self.serializer_class(exercise)
+#             return Response(serializer.data)
+#         if name:
+#             # Get exercise by name
+#             exercise = Exercise.objects.filter(name=name).first()
+#             serializer = self.serializer_class(exercise)
+#             return Response(serializer.data)
+#         # Get all exercises from the database
+#         exercises = Exercise.objects.all()
+
+#         # Serialize the data using ExerciseSerializers
+#         serializer = self.serializer_class(exercises, many=True)
+
+#         # # Return the serialized data in the response
+#         return Response(serializer.data)
