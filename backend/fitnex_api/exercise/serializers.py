@@ -2,8 +2,6 @@ from rest_framework import serializers
 from .models import BodyPart, Exercise, Target, Equipment
 
 
-
-
 # class ExerciseSerializers(serializers.ModelSerializer):
 #     class Meta:
 #         model = Exercise
@@ -32,23 +30,23 @@ from .models import BodyPart, Exercise, Target, Equipment
 #         except model.DoesNotExist:
 #             return None
 
-# class ExerciseSerializers(serializers.ModelSerializer):
-#     bodyPart_data = serializers.SerializerMethodField()
-#     target_data = serializers.SerializerMethodField()
-#     equipment_data = serializers.SerializerMethodField()
+class ExerciseSerializers(serializers.ModelSerializer):
+    bodyPart_data = serializers.SerializerMethodField()
+    target_data = serializers.SerializerMethodField()
+    equipment_data = serializers.SerializerMethodField()
 
-#     class Meta:
-#         model = Exercise
-#         fields = '__all__'
+    class Meta:
+        model = Exercise
+        fields = '__all__'
 
-#     def get_bodyPart_data(self, instance):
-#         return instance.bodyPart.name if instance.bodyPart else None
+    def get_bodyPart_data(self, instance):
+        return instance.bodyPart.name if instance.bodyPart else None
 
-#     def get_target_data(self, instance):
-#         return instance.target.name if instance.target else None
+    def get_target_data(self, instance):
+        return instance.target.name if instance.target else None
 
-#     def get_equipment_data(self, instance):
-#         return instance.equipment.name if instance.equipment else None
+    def get_equipment_data(self, instance):
+        return instance.equipment.name if instance.equipment else None
 
 
 class BodyPartSerializers(serializers.ModelSerializer):
@@ -58,7 +56,6 @@ class BodyPartSerializers(serializers.ModelSerializer):
 
 
 class TargetSerializers(serializers.ModelSerializer):
-    
 
     class Meta:
         model = Target
@@ -85,28 +82,29 @@ class EquipmentSerializers(serializers.ModelSerializer):
 
 
 class ExerciseCreateSerializers(serializers.ModelSerializer):
-    bodyPart = serializers.CharField(write_only=True)
-    target = serializers.CharField(write_only=True)
-    equipment = serializers.CharField(write_only=True)
+    pass
+#     bodyPart = serializers.CharField(write_only=True)
+#     target = serializers.CharField(write_only=True)
+#     equipment = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = Exercise
-        fields = "__all__"
+#     class Meta:
+#         model = Exercise
+#         fields = "__all__"
 
-    def create(self, validated_data):
-        # Extract the names of related models from the validated data
-        body_part_name = validated_data.pop("bodyPart")
-        target_name = validated_data.pop("target")
-        equipment_name = validated_data.pop("equipment")
+#     def create(self, validated_data):
+#         # Extract the names of related models from the validated data
+#         body_part_name = validated_data.pop("bodyPart")
+#         target_name = validated_data.pop("target")
+#         equipment_name = validated_data.pop("equipment")
 
-        # Get or create related instances based on names
-        bodyPart, _ = BodyPart.objects.get_or_create(name=body_part_name)
-        target, _ = Target.objects.get_or_create(name=target_name)
-        equipment, _ = Equipment.objects.get_or_create(name=equipment_name)
+#         # Get or create related instances based on names
+#         bodyPart, _ = BodyPart.objects.get_or_create(name=body_part_name)
+#         target, _ = Target.objects.get_or_create(name=target_name)
+#         equipment, _ = Equipment.objects.get_or_create(name=equipment_name)
 
-        # Create Exercise instance with related instances
-        exercise = Exercise.objects.create(
-            bodyPart=bodyPart, target=target, equipment=equipment, **validated_data
-        )
+#         # Create Exercise instance with related instances
+#         exercise = Exercise.objects.create(
+#             bodyPart=bodyPart, target=target, equipment=equipment, **validated_data
+#         )
 
-        return exercise
+#         return exercise
