@@ -10,7 +10,7 @@ const OurFeatures = (props: Props) => {
 
     <div className="">
       <div className="flex flex-col md:flex-row items-center justify-center pb-10">
-        <div className="p-5 justify-center md:w-1/3">
+        <div className="p-5 justify-center">
           <div className="
                 bg-gradient-to-r
                 from-blue-800
@@ -28,15 +28,11 @@ const OurFeatures = (props: Props) => {
             Providing high-quality instructional content for exercises and nutrition to ensure trainer safety and effectiveness in achieving their fitness goals.
 
           </div>
-          <Link href="/register">
-            <button className="bg-blue-500 text-white p-4 justify-center flex md:w-1/3 rounded-lg hover:bg-blue-600">
-              Get Started
-            </button>
-          </Link>
+        
         </div>
 
 
-        <video className="rounded-xl md:w-2/5 p-4 md:p-0 " autoPlay muted loop >
+        <video className="rounded-xl md:w-2/5 md:p-0 " autoPlay muted loop >
           <source src="/content/video-2.mp4" type="video/mp4" />
 
         </video>
@@ -63,7 +59,7 @@ const OurFeatures = (props: Props) => {
 
         </h2>
 
-        <div className="grid grid-cols-1 p-4 md:grid md:grid-cols-3 gap-4 md:px-40">
+        <div className="grid grid-cols-1 p-4 md:grid md:grid-cols-3 gap-4">
           {OurFeaturesData.map((feature, index) => (
             <div
               key={index}
@@ -88,9 +84,6 @@ const OurFeatures = (props: Props) => {
                                     to-gray-400
                                     bg-clip-text
                                     text-transparent
-
-                                    
-                                    
                                     ">{
                       feature.name}
                   </div>

@@ -9,10 +9,11 @@ type Props = {}
 
 const HeroBanner = (props: Props) => {
     return (
-        <div className='mt-[120px] lg:mt-[212px] sm:ml-[50px] relative p-[20px]'>
-            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">
-                FITNEX<br />Training Platform
+        <div className='md:mt-[120px] sm:ml-[50px] relative'>
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent pb-3">
+                FITNEX<br/>Training Platform
             </h1>
+            <div className='mt-6' aria-label='hidden'/>
             <blockquote className="mt-6 border-l-2 pl-6 italic">
                 Sweat, Smile and Repeat 😉
             </blockquote>

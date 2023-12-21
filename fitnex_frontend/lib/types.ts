@@ -1,3 +1,4 @@
+import LoginUserForm from '@/components/LoginUserForm';
 
 export type ExerciseProps = {
     id: number;
@@ -42,3 +43,15 @@ export type Feature = {
     color? : string,
     description: string,
 }
+
+export type User = {
+    name: string,
+    email: string,
+    id: string
+}
+
+export type LoginUserResponse = {
+    status: string,
+    access_token: string,
+}
+

@@ -10,6 +10,9 @@ import { Exercise, Targets, Equipments } from '@/lib/network';
 import { ExerciseProps, ExcerciseDetail, TargetProps, EquipmentProps, BodyPartProps } from '@/lib/types';
 import { useDataFetch } from '@/components/hooks/useDataFetch';
 import Loader from '@/components/Loader';
+import { useStore } from '@/store';
+import { redirect } from 'next/navigation';
+import { toast } from '@/components/ui/use-toast';
 
 type Props = {
     params: {
@@ -25,31 +28,38 @@ const Page = ({ params }: Props) => {
 
     const { exerciseId } = params;
 
-    const { data: exercise, isError: exerciseError, isLoading: exerciseLoading } = useDataFetch<ExerciseProps>({ keys: ['exercise'], url: `${Exercise.list}/${exerciseId}` });
+    const store = useStore()
+
+    if (store.authUser === null) {
+        redirect('/login')   
+    }
+    
+
+    const { data: exercise, isError: exerciseError, isLoading: exerciseLoading } = useDataFetch<ExerciseProps>({ keys: ['exercises'], url: `${Exercise.list}/${exerciseId}` });
 
 
     // Additional data fetching based on the exercise data
     const { data: targets, isError: targetsError, isLoading: targetsLoading } = useDataFetch<TargetProps | any>({
-        keys: ['target'],
+        keys: ['targets'],
         url: `${Targets.list}/${exercise?.target_data!}`,
     });
 
     const { data: equipments, isError: equipmentsError, isLoading: equipmentsLoading } = useDataFetch<EquipmentProps | any>({
-        keys: ['equipment'],
+        keys: ['equipments'],
         url: `${Equipments.list}/${exercise?.equipment_data!}`,
     })
     const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
     const { data: exerciseVideosData, isError, isLoading } = useDataFetch<any>({
-        keys: ['youtubevide'],
+        keys: ['youtubevideo'],
         url: `${youtubeSearchUrl}/search?query=${exercise?.name} exercise`,
-        options: youtubeOptions, 
+        options: youtubeOptions,
     })
 
     console.log(targets)
 
     useEffect(() => {
         const fetchExerciseDetail = async () => {
-            
+
 
             try {
                 if (exercise) {
@@ -74,7 +84,7 @@ const Page = ({ params }: Props) => {
         };
 
         fetchExerciseDetail();
-    }, [exerciseId, exercise, targets, equipments,exerciseVideosData]);
+    }, [exerciseId, exercise, targets, equipments, exerciseVideosData]);
 
     if (exerciseLoading || targetsLoading || equipmentsLoading) {
         // Loading state
@@ -92,14 +102,3 @@ const Page = ({ params }: Props) => {
 };
 
 export default Page;
-
-
-// const exerciseDbUrl = 'https://exercisedb.p.rapidapi.com';
-// const exerciseDetailData = await fetchData({ url: `${exerciseDbUrl}/exercises/exercise/${exerciseId}`, options: exerciseOptions })
-// setExerciseDetail(exerciseDetailData);
-
-// const targetMuscleExerciseData = await fetchData({ url: `${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`, options: exerciseOptions })
-// setTarget(targetMuscleExerciseData);
-
-// const equipmentExerciseData = await fetchData({ url: `${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`, options: exerciseOptions })
-// setEquipment(equipmentExerciseData);

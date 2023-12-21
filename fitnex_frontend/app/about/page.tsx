@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { CardHeader, CardContent, Card } from "@/components/ui/card"
-import { Avatar } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 
@@ -49,7 +49,11 @@ export default function Component() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card>
               <CardContent className="flex items-center space-x-4 md:py-10">
-                <Avatar alt="Team member" className="w-24" src="/images/fitdev.png" />
+
+                <Avatar>
+                  <AvatarImage src="/images/fitdev.png" alt="Team member" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold">Chukwuemeka Ngumoha</h3>
                   <Badge>Backend Developer</Badge>
@@ -61,7 +65,10 @@ export default function Component() {
             </Card>
             <Card>
               <CardContent className="flex items-center space-x-4 md:py-10">
-                <Avatar alt="Team member" className="w-24" src="/images/fitdev.png" />
+                <Avatar>
+                  <AvatarImage src="/images/fitdev.png" alt="Team member" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold">Aliyu Timilehin</h3>
                   <Badge>Backend Developer</Badge>
@@ -73,7 +80,10 @@ export default function Component() {
             </Card>
             <Card>
               <CardContent className="flex items-center space-x-4 md:py-10">
-                <Avatar alt="Team member" className="w-24" src="/images/fitdev.png" />
+                <Avatar>
+                  <AvatarImage src="/images/fitdev.png" alt="Team member" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold">Kyrillos Maher</h3>
                   <Badge>Backend Developer</Badge>
@@ -85,7 +95,10 @@ export default function Component() {
             </Card>
             <Card>
               <CardContent className="flex items-center space-x-4 md:py-10">
-                <Avatar alt="Team member" className="w-24" src="/images/fitdev.png" />
+                <Avatar>
+                  <AvatarImage src="/images/fitdev.png" alt="Team member" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold">Ibrahim Abdulazeez</h3>
                   <Badge>Backend Developer</Badge>
@@ -101,7 +114,7 @@ export default function Component() {
           <h2 className="text-3xl font-bold mb-8">Join us on our journey to fitness</h2>
           <Link href="/register">
             <Button className="px-6 py-3 text-lg">Get Started</Button>
-            </Link>
+          </Link>
         </section>
       </main>
     </>
@@ -109,7 +122,7 @@ export default function Component() {
 }
 
 
-function ClockIcon(props) {
+function ClockIcon(props: any) {
   return (
     <svg
       {...props}
@@ -130,7 +143,7 @@ function ClockIcon(props) {
 }
 
 
-function DumbbellIcon(props) {
+function DumbbellIcon(props: any) {
   return (
     <svg
       {...props}
