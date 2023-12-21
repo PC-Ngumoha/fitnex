@@ -2,8 +2,6 @@ from rest_framework import serializers
 from .models import BodyPart, Exercise, Target, Equipment
 
 
-
-
 # class ExerciseSerializers(serializers.ModelSerializer):
 #     class Meta:
 #         model = Exercise
@@ -58,7 +56,6 @@ class BodyPartSerializers(serializers.ModelSerializer):
 
 
 class TargetSerializers(serializers.ModelSerializer):
-    
 
     class Meta:
         model = Target
@@ -84,7 +81,8 @@ class EquipmentSerializers(serializers.ModelSerializer):
 #         fields = '__all__'
 
 
-# class ExerciseCreateSerializers(serializers.ModelSerializer):
+class ExerciseCreateSerializers(serializers.ModelSerializer):
+    pass
 #     bodyPart = serializers.CharField(write_only=True)
 #     target = serializers.CharField(write_only=True)
 #     equipment = serializers.CharField(write_only=True)

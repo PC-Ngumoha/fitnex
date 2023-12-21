@@ -1,21 +1,12 @@
 "use client"
 
-// import Exercises from '@/components/Exercises'
+import Exercises from '@/components/Exercises'
 import HeroBanner from '@/components/HeroBanner'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
-import { BodyPartProps, ExerciseProps } from '@/lib/types'
-
-
-import { useState } from 'react'
 import SearchExcercise from '@/components/SearchExcercise'
-import HeroSection from '@/components/HeroSection'
-import OurFeatures from '@/components/OurFeatures'
-import Customizable from '@/components/Customizable'
-import MadeSimple from '@/components/MadeSimple'
-import MadeFor from '@/components/MadeFor'
-import Faqs from '@/components/Faqs'
-import NeedHelp from '@/components/NeedHelp'
-
+import { BodyPartProps, ExerciseProps } from '@/lib/types'
+import Image from 'next/image'
+import { useState } from 'react'
 
 export default function Home() {
 
@@ -30,18 +21,10 @@ export default function Home() {
       <MaxWidthWrapper>
         <HeroBanner />
 
-        {/* <SearchExcercise setExercises={setExercises} setBodyPart={setBodyPart} bodyPart={bodyPart} /> */}
+        <SearchExcercise setExercises={setExercises} bodyPart={bodyPart} setBodyPart={setBodyPart} />
 
-        <HeroSection />
-        <OurFeatures />
-        <Customizable />
-        <MadeSimple />
-        <MadeFor />
-        <Faqs />
-        <NeedHelp />
+        <Exercises exercises={exercises} setExercises={setExercises} bodyPart={bodyPart}  />
       </MaxWidthWrapper>
-
-
     </>
   )
 }
