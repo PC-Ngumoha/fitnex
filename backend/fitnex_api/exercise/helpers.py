@@ -51,7 +51,6 @@
 #     # Handle other unexpected errors
 #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-
 # class ExerciseView(APIView):
 #     def get(self, request):
 #         try:
