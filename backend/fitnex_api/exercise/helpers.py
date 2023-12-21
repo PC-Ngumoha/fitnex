@@ -50,3 +50,44 @@
 # except Exception as e:
 #     # Handle other unexpected errors
 #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# class ExerciseView(APIView):
+#     def get(self, request):
+#         try:
+#             # Fetch data from the API
+#             api_data = make_req("https://exercisedb.p.rapidapi.com/exercises")
+
+#             # Process each data object
+#             updated_exercises = []
+#             for data_object in api_data:
+#                 gif_url = data_object.get('gifUrl')
+
+#                 # Download the object (GIF image) from the 'gifUrl' field
+#                 new_url = download_and_upload_image(gif_url)
+
+#                 if new_url:
+#                     # Once you have the new URL, update the 'gifUrl' field
+#                     data_object['gifUrl'] = new_url
+
+#                     # Append the modified data object to the list
+#                     updated_exercises.append(data_object)
+#                 else:
+#                     # Handle the case where download and upload fail for an image
+#                     print(
+#                         f"Failed to download and upload image for {data_object.get('name')}")
+
+#             # Serialize and save the modified data to the database
+#             exercise_serializer = ExerciseCreateSerializers(
+#                 data=updated_exercises, many=True)
+#             exercise_serializer.is_valid(raise_exception=True)
+#             exercise_serializer.save()
+
+#             # Return serialized data in the response
+#             return Response(exercise_serializer.data, status=status.HTTP_200_OK)
+
+#         except requests.RequestException as e:
+#             # Handle API request errors
+#             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#         except Exception as e:
+#             # Handle other unexpected errors
+#             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

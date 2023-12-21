@@ -1,12 +1,21 @@
 "use client"
 
-import Exercises from '@/components/Exercises'
+// import Exercises from '@/components/Exercises'
 import HeroBanner from '@/components/HeroBanner'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
-import SearchExcercise from '@/components/SearchExcercise'
 import { BodyPartProps, ExerciseProps } from '@/lib/types'
-import Image from 'next/image'
+
+
 import { useState } from 'react'
+import SearchExcercise from '@/components/SearchExcercise'
+import HeroSection from '@/components/HeroSection'
+import OurFeatures from '@/components/OurFeatures'
+import Customizable from '@/components/Customizable'
+import MadeSimple from '@/components/MadeSimple'
+import MadeFor from '@/components/MadeFor'
+import Faqs from '@/components/Faqs'
+import NeedHelp from '@/components/NeedHelp'
+
 
 export default function Home() {
 
@@ -21,11 +30,8 @@ export default function Home() {
       <MaxWidthWrapper>
         <HeroBanner />
 
-        <SearchExcercise setExercises={setExercises} bodyPart={bodyPart} setBodyPart={setBodyPart} />
+        {/* <SearchExcercise setExercises={setExercises} setBodyPart={setBodyPart} bodyPart={bodyPart} /> */}
 
-        <Exercises exercises={exercises} setExercises={setExercises} bodyPart={bodyPart}  />
-      </MaxWidthWrapper>
-      <div>
         <HeroSection />
         <OurFeatures />
         <Customizable />
@@ -33,7 +39,9 @@ export default function Home() {
         <MadeFor />
         <Faqs />
         <NeedHelp />
-      </div>
+      </MaxWidthWrapper>
+
+
     </>
   )
 }
