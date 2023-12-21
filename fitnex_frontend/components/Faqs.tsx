@@ -8,7 +8,7 @@ const Faqs = (props: Props) => {
 
     
     return (
-        <div className="">
+        <div className="md:py-20">
             <div className="border-[1px] md:w-2/3 mx-auto p-10 rounded-xl justify-center">
                 <div className="text-4xl font-bold mb-5">
                     <div className="text-4xl font-bold mb-5 text-center text-gradient bg-gradient-to-r from-white to-gray-800 bg-clip-text text-transparent">

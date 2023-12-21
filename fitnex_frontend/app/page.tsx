@@ -25,6 +25,15 @@ export default function Home() {
 
         <Exercises exercises={exercises} setExercises={setExercises} bodyPart={bodyPart}  />
       </MaxWidthWrapper>
+      <div>
+        <HeroSection />
+        <OurFeatures />
+        <Customizable />
+        <MadeSimple />
+        <MadeFor />
+        <Faqs />
+        <NeedHelp />
+      </div>
     </>
   )
 }
