@@ -73,7 +73,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }: Props) => {
   return (
     <div id="exercises" className='mt-10 p-10 lg:mt-20'>
       <h1 className="scroll-m-20 text-2xl font-bold text-center tracking-tight lg:text-3xl mb-[50px]">
-        Showing Results for <span className='text-[#FFA500]'>{bodyPart ? bodyPart[0]?.name : 'All Exercises'}</span>
+        Showing Results for <span className='text-blue-500'>{bodyPart ? bodyPart[0]?.name : 'All Exercises'}</span>
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8">
         {displayedExercises.map((exercise: ExerciseProps) => (
