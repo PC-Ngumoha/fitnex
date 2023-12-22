@@ -1,3 +1,4 @@
+import { useStore } from "@/store"
 import axios from "axios"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -10,6 +11,7 @@ type Props = {
   url: string | any,
   options?: any
 }
+
 
 export const exerciseOptions = {
   method: 'GET',
@@ -29,12 +31,6 @@ export const youtubeOptions = {
   }
 }
 
-// export const fetchData = async ({ url, options }: Props) => {
-//   const response = await fetch(url, options);
-//   const data = await response.json();
-
-//   return data
-// }
 
 export const fetchData = async ({ url }: Props) => {
   const response = await axios.get(url);

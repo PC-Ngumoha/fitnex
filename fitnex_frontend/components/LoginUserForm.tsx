@@ -30,9 +30,9 @@ const LoginUserForm = (props: Props) => {
     const { mutate: registerUser, isPending } = useMutation({
         mutationFn: async (userData: UserRegInput) => {
             const response = await axios.post(Auth.login, userData)
-            console.log(response.data)
-            const token = response.data.access_token
-            console.log(token)
+            // console.log(response.data)
+            // const token = response.data.access_token
+            // console.log(token)
             return response.data
         }
     });
@@ -48,7 +48,8 @@ const LoginUserForm = (props: Props) => {
     function onSubmit(userData: UserRegInput) {
         registerUser(userData, {
             onSuccess: (token) => {
-                store.setAuthUser(token)
+                // console.log(token)
+                store.setAuthUser(token.access_token)
                 toast({
                     title: "Success",
                     description: "Logged In successfully",
@@ -66,8 +67,8 @@ const LoginUserForm = (props: Props) => {
                 return;
             }
         });
-        const user = store.authUser;
-        console.log(user)
+        // const user = store.authUser;
+        // console.log(user)
     }
     return (
         <div className='w-full max-w-md mx-auto'>

@@ -31,9 +31,9 @@ const Page = ({ params }: Props) => {
     const store = useStore()
 
     if (store.authUser === null) {
-        redirect('/login')   
+        redirect('/login')
     }
-    
+
 
     const { data: exercise, isError: exerciseError, isLoading: exerciseLoading } = useDataFetch<ExerciseProps>({ keys: ['exercises'], url: `${Exercise.list}/${exerciseId}` });
 
