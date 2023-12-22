@@ -13,8 +13,9 @@ type Props = {}
 
 const Navbar = (props: Props) => {
     const [menuOpen, setMenuOpen] = React.useState(false)
-    const store = useStore();
+    const store = useStore(); //we can also destructure straight {authUser}
     const user = store.authUser;
+    
 
     const handleMenuItemClick = () => {
         setMenuOpen(false);

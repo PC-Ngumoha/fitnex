@@ -50,7 +50,7 @@ export type User = {
     id: string
 }
 
-export type LoginUserResponse = {
+export type UserResponse = {
     status: string,
     access_token: string,
 }
