@@ -68,31 +68,32 @@ class LoginView(APIView):
 
 class ResetPasswordView(APIView):
     """Reset Password View"""
+    pass
 
-    def post(self, request):
-        email = request.data.get('email')
-        user = User.objects.get(email=email)
+    # def post(self, request):
+    #     email = request.data.get('email')
+    #     user = User.objects.get(email=email)
 
-        # Generate password reset token
-        token = default_token_generator.make_token(user)
+    #     # Generate password reset token
+    #     token = default_token_generator.make_token(user)
 
-        # Build the reset link
-        reset_link = f'https://your-frontend-app/reset-password?token={token}'
+    #     # Build the reset link
+    #     reset_link = f'https://your-frontend-app/reset-password?token={token}'
 
-        # Render the email template
-        email_body = render_to_string('password_reset_email.html', {'reset_link': reset_link})
+    #     # Render the email template
+    #     email_body = render_to_string('password_reset_email.html', {'reset_link': reset_link})
 
-        # Send email with password reset link
-        send_mail(
-            'Password Reset',
-            email_body,
-            'from@example.com',
-            [email],
-            html_message=email_body,
-            fail_silently=False,
-        )
+    #     # Send email with password reset link
+    #     send_mail(
+    #         'Password Reset',
+    #         email_body,
+    #         'from@example.com',
+    #         [email],
+    #         html_message=email_body,
+    #         fail_silently=False,
+    #     )
 
-        return Response({'message': 'Password reset email sent'}, status=status.HTTP_200_OK)
+    #     return Response({'message': 'Password reset email sent'}, status=status.HTTP_200_OK)
 
 
 class CurrentUserView(APIView):
