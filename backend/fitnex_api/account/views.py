@@ -7,6 +7,10 @@ from .models import FitUser
 from django.db import IntegrityError
 from .serializers import AuthSerializer, CustomUserSerializer
 from django.contrib.auth import authenticate
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -64,6 +68,31 @@ class LoginView(APIView):
 
 class ResetPasswordView(APIView):
     """Reset Password View"""
+
+    def post(self, request):
+        email = request.data.get('email')
+        user = User.objects.get(email=email)
+
+        # Generate password reset token
+        token = default_token_generator.make_token(user)
+
+        # Build the reset link
+        reset_link = f'https://your-frontend-app/reset-password?token={token}'
+
+        # Render the email template
+        email_body = render_to_string('password_reset_email.html', {'reset_link': reset_link})
+
+        # Send email with password reset link
+        send_mail(
+            'Password Reset',
+            email_body,
+            'from@example.com',
+            [email],
+            html_message=email_body,
+            fail_silently=False,
+        )
+
+        return Response({'message': 'Password reset email sent'}, status=status.HTTP_200_OK)
 
 
 class CurrentUserView(APIView):
