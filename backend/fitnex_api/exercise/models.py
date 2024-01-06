@@ -46,4 +46,4 @@ class Log(models.Model):
     user = models.ForeignKey(FitUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.date_created
+        return f'{self.date_created}'
