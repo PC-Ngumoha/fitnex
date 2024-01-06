@@ -1,4 +1,4 @@
-import {create} from "zustand";
+import { create } from "zustand";
 import { User, UserResponse } from "@/lib/types";
 import { createJSONStorage, persist } from "zustand/middleware";
 
@@ -16,9 +16,9 @@ export const useStore = create<Store>()(
             setAuthUser: (user) => set((state) => ({ ...state, authUser: user })),
             logout: () => set((state) => ({ ...state, authUser: null })),
         }), {
-            name: "auth-user",
-            storage: createJSONStorage(() => localStorage)
-        }
+        name: "auth-user",
+        storage: createJSONStorage(() => localStorage)
+    }
     )
 )
 

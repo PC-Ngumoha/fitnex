@@ -1,15 +1,20 @@
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import transaction
+from django.shortcuts import get_object_or_404
 from fitnex_api.authentication_middleware import IsAuthenticatedCustom
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
 
-from .models import Exercise, Target, BodyPart, Equipment
+from .models import (Exercise, Target, BodyPart, Equipment, Log)
 from .serializers import (
     BodyPartSerializers,
     EquipmentSerializers,
     ExerciseSerializers,
     TargetSerializers,
+    LogSerializers,
+    LogDetailSerializers
 )
 
 
@@ -96,3 +101,60 @@ class EquipmentsView(APIView):
             equipment_objects = Equipment.objects.all()
             serializer = self.serializer_class(equipment_objects, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class LogsView(APIView):
+    serializer_class = LogSerializers
+    permission_classes = (IsAuthenticatedCustom,)
+
+    def get(self, request):
+        logs = Log.objects.filter(user=request.user).all()
+        serializer = self.serializer_class(logs, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        exercise_ids = request.data.get("exercises")
+
+        if not exercise_ids:
+            return Response({"message": "Unable to log exercises"},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        exercises = []
+        invalid_ids = []
+
+        for e_id in exercise_ids:
+            try:
+                exercise = Exercise.objects.get(id=e_id)
+                exercises.append(exercise)
+            except Exercise.DoesNotExist:
+                invalid_ids.append(e_id)
+
+        if invalid_ids:
+            invalid_ids_str = ', '.join(map(str, invalid_ids))
+            return Response({
+                "message": f"Invalid exercise IDs: {invalid_ids_str}"
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        with transaction.atomic():
+            log = Log.objects.create(user=request.user)
+            log.exercises.add(*exercises)
+
+        serializer = self.serializer_class(log)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class LogsDetailsView(APIView):
+    serializer_class = LogDetailSerializers
+    permission_classes = (IsAuthenticatedCustom,)
+
+    def get(self, request, id):
+        try:
+            log = get_object_or_404(Log, id=id, user=request.user)
+            serializer = self.serializer_class(log)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response({"message": "Log not found"},
+                            status=status.HTTP_404_NOT_FOUND)
+        except Exception as err:
+            return Response({"message": str(err)},
+                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -41,20 +41,20 @@ const RegisterUserForm = (props: Props) => {
         }
     });
 
-    function onSubmit(userData: UserRegInput) {
-        
+    function onSubmit (userData: UserRegInput) {
+
         registerUser(userData, {
             onSuccess: () => {
                 toast({
                     title: "Success",
                     description: "User registered successfully",
                 });
-                
+
                 router.push('/login');
             },
             onError: (error: any) => {
-                
-                
+
+
                 toast({
                     title: "Error",
                     description: "An error occured trying to register you",

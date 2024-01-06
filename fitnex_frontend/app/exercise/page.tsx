@@ -11,7 +11,7 @@ import { redirect } from 'next/navigation';
 import { toast } from '@/components/ui/use-toast';
 
 
-export default function Home() {
+export default function Home () {
 
   //changes are reflected acrross the app
   const [exercises, setExercises] = useState<ExerciseProps[]>([])
