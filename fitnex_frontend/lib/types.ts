@@ -48,9 +48,12 @@ export type User = {
     name: string,
     email: string,
     id: string
+    avatar?: string,
+    date_joined: string,
 }
 
 export type UserResponse = {
+    user: User | null
     status: string,
     access_token: string,
 }

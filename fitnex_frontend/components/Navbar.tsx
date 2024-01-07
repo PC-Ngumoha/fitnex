@@ -6,6 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 import { ThemeToggle } from './ThemeToggle'
 import UserAccountNav from './UserAccountNav'
+import SpotlightButton from "./customButton"
 import { Button } from './ui/button'
 // import { Separator } from "@/components/ui/separator"
 
@@ -13,24 +14,38 @@ type Props = {}
 
 const Navbar = (props: Props) => {
     const [menuOpen, setMenuOpen] = React.useState(false)
+    const [mounted, setMounted] = React.useState(false)
     const store = useStore(); //we can also destructure straight {authUser}
     const user = store.authUser;
-    
+
 
     const handleMenuItemClick = () => {
         setMenuOpen(false);
     };
 
+    // code to set mounted and put it in a useeffect due hydration errors
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
     return (
-        <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
-            <Sheet>
+        <>
+            <header className="flex h-20 w-full items-center justify-between fixed top-0 z-10 px-4 md:px-6 backdrop-blur-sm">
+                <Link className="mr-6 flex rounded-lg p-4 py-1" href="/">
+                    <h1 className='text-3xl font-bold transition-all hover:translate-y-[2px] md:block bg-gradient-to-r from-blue-500 to-blue-100 bg-clip-text text-transparent'>
+                        Fitnex
+                    </h1>
+                    <p className='text-yellow-500'>beta</p>
+                </Link>
+
+                <Sheet >
                 <SheetTrigger asChild>
-                    <Button className="lg:hidden" size="icon" variant="outline">
+                    <Button className="md:hidden" size="icon" variant="outline">
                         <MenuIcon className="h-6 w-6" />
                         <span className="sr-only">Toggle navigation menu</span>
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="left">
+                <SheetContent side="right">
                     <Link href="/">
                         <span className="sr-only">Fitnex</span>
                     </Link>
@@ -53,57 +68,60 @@ const Navbar = (props: Props) => {
                     </div>
                 </SheetContent>
             </Sheet>
-            <Link className="mr-6 hidden lg:flex rounded-lg p-4 py-1" href="/">
-                <h1 className='text-3xl font-bold transition-all hover:translate-y-[2px] md:block bg-gradient-to-r from-blue-500 to-blue-100 bg-clip-text text-transparent'>
-                    Fitnex
-                </h1>
-                <p className='text-yellow-500'>beta</p>
-            </Link>
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="hidden lg:flex">
-                        <MenuIcon className="h-6 w-6 mr-2" />
-                        Menu
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    <DropdownMenuItem asChild>
-                        <Link className="w-full h-full" href="/">
-                            Home
+
+                <div className="hidden md:flex md:items-center md:justify-center space-x-10 border px-6 py-4 rounded-full border-neutral-800 bg-white/70 hover:scale-105">
+                    <Link className="w-full h-full hover:text-blue-400 " href="/">
+                        Home
+                    </Link>
+
+                    <Link className="w-full h-full hover:text-blue-400" href="/about">
+                        About
+                    </Link>
+
+                    <Link className="w-full h-full hover:text-blue-400" href="/blog">
+                        Blog
+                    </Link>
+
+                    <Link className="w-full h-full hover:text-blue-400" href="/faqs">
+                        FAQs
+                    </Link>
+
+                    <Link className="w-full h-full hover:text-blue-400" href="/contact">
+                        Contact
+                    </Link>
+                </div>
+
+                <div className="flex items-center gap-4">
+                    {mounted && user === null ? (<>
+
+                        <Link href="/login">
+                            <Button className="hidden md:flex" variant="outline">
+                                Sign in
+                            </Button>
                         </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                        <Link className="w-full h-full" href="/about">
-                            About
+                        <Link href="/register">
+
+                            <div className="hidden md:flex">
+
+                                <SpotlightButton text="Sign Up" />
+                            </div>
                         </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                        <Link className="w-full h-full" href="/blog">
-                            Blog
+                    </>
+                    ) : (<>
+                        <Link href="/exercise">
+                            <Button className="hidden md:flex" variant="outline">
+                                View Exercises
+                            </Button>
                         </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                        <Link className="w-full h-full" href="/faqs">
-                            FAQs
-                        </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                        <Link className="w-full h-full" href="/contact">
-                            Contact
-                        </Link>
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-            <div className="ml-auto flex items-center gap-4">
-                <Link href="/exercise">
-                    <Button className="hidden md:flex" variant="outline">
-                        View Exercises
-                    </Button>
-                </Link>
-                <ThemeToggle />
-                <UserAccountNav user={user} />
-            </div>
-        </header>
+                        <UserAccountNav user={mounted && user} />
+                    </>
+                    )}
+
+                    <ThemeToggle />
+
+                </div>
+            </header>
+        </>
     )
 }
 

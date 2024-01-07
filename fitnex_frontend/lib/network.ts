@@ -7,10 +7,16 @@ type Urls = {
     login: string;
 };
 
+
+
 export const Auth: Urls = {
     register: `${BASE_URL}/account/register`,
     login: `${BASE_URL}/account/login`,
 };
+
+export const Profile = {
+    me: `${BASE_URL}/account/me`,
+}
 
 type EndpointUrls = {
     list: string;
