@@ -51,7 +51,7 @@ class ExerciseLogSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Exercise
-        fields = ('id', 'name', 'bodyPart_data')
+        fields = ('id', 'name', 'gifUrl', 'bodyPart_data')
 
     def get_bodyPart_data(self, instance):
         return instance.bodyPart.name if instance.bodyPart else None

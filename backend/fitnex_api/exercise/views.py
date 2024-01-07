@@ -1,6 +1,8 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
+from exercise.utils import get_organized_data
 from fitnex_api.authentication_middleware import IsAuthenticatedCustom
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -110,7 +112,9 @@ class LogsView(APIView):
     def get(self, request):
         logs = Log.objects.filter(user=request.user).all()
         serializer = self.serializer_class(logs, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        # return Response(serializer.data, status=status.HTTP_200_OK)
+        data = get_organized_data(serializer.data)
+        return Response(data, status=status.HTTP_200_OK)
 
     def post(self, request):
         exercise_ids = request.data.get("exercises")
@@ -136,7 +140,9 @@ class LogsView(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
 
         with transaction.atomic():
-            log = Log.objects.create(user=request.user)
+            today = timezone.now().date()
+            log, _ = Log.objects.get_or_create(
+                date_created=today, user=request.user)
             log.exercises.add(*exercises)
 
         serializer = self.serializer_class(log)
