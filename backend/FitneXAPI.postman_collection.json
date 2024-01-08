@@ -1,38 +1,11 @@
 {
 	"info": {
-		"_postman_id": "65945b02-9639-4ff6-b7de-6d6c75eadf2f",
+		"_postman_id": "b0864d97-a8b7-43ae-84f8-7297622d78cd",
 		"name": "FitneXAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21378195"
+		"_exporter_id": "19323513"
 	},
 	"item": [
-		{
-			"name": "Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Timilehin Aliyu\",\r\n    \"email\": \"au12@gmail.com\",\r\n    \"password\": \"Asdfvbnm1@\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/account/register",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"account",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "Login",
 			"request": {
@@ -40,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"au12@gmail.com\",\r\n    \"password\": \"Asdfvbnm1@\"\r\n}",
+					"raw": "{\r\n    \"email\": \"guyana@example.com\",\r\n    \"password\": \"guyanagreen123#\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,6 +34,33 @@
 			"response": []
 		},
 		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"tester1\",\r\n    \"email\": \"tester1@example.com\",\r\n    \"password\": \"testing123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/account/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "CurrentLoggedInuser",
 			"request": {
 				"method": "GET",
@@ -73,6 +73,238 @@
 					"path": [
 						"account",
 						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exercises",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/exercises",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"exercises"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Equipments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/equipments",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"equipments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BodyParts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/body-parts",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"body-parts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Targets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/targets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"targets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Specific Exercise By Exercise ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/exercises/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"exercises",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Specific Exercise By Exercise Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/exercises/3%2F4%20sit-up",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"exercises",
+						"3%2F4%20sit-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Targets with ID >= 20",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/targets/delete",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"targets",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new log",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"exercises\": [1, 2, 3, 4, 5]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/exercise/logs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all logs for current user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>ID</th>\r",
+							"        <th>Date Created</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response.\"2024\".January}}\r",
+							"        <tr>\r",
+							"            <td>{{id}}</td>\r",
+							"            <td>{{date_created}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/logs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve specific log detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/logs/3",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"logs",
+						"3"
 					]
 				}
 			},
