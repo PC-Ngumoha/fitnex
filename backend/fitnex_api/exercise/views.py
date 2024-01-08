@@ -1,3 +1,4 @@
+from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 from django.shortcuts import get_object_or_404
@@ -110,11 +111,22 @@ class LogsView(APIView):
     permission_classes = (IsAuthenticatedCustom,)
 
     def get(self, request):
+        # Gets the month and/or year provided in Titlecase
+        month = (request.query_params.get(
+            'month') or date.today().strftime('%B')).title()
+        year = (request.query_params.get(
+            'year') or date.today().strftime('%Y')).title()
+
         logs = Log.objects.filter(user=request.user).all()
         serializer = self.serializer_class(logs, many=True)
-        # return Response(serializer.data, status=status.HTTP_200_OK)
         data = get_organized_data(serializer.data)
-        return Response(data, status=status.HTTP_200_OK)
+
+        # Filters the data by the year and month
+        output = {y: {
+            m: l for m, l in data[y].items() if m == month
+        } for y in data.keys() if y == year}
+
+        return Response(output, status=status.HTTP_200_OK)
 
     def post(self, request):
         exercise_ids = request.data.get("exercises")
