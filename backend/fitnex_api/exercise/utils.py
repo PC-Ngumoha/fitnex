@@ -79,11 +79,12 @@ def download_and_upload_image(gif_url, folder='fitnex_gifs'):
         print('Done')
 
 
-def get_month_name(date_str):
+def get_date_details(date_str):
     try:
         date_obj = datetime.strptime(date_str, '%Y-%m-%d')
-        month_name = date_obj.strftime('%B')
-        return month_name
+        month = date_obj.strftime('%B')
+        year = date_obj.strftime('%Y')
+        return (month, year)
     except ValueError:
         return None
 
@@ -92,8 +93,7 @@ def get_organized_data(logs):
     output = {}
     for log in logs:
         date_str = log.get('date_created')
-        year, _, _ = date_str.split('-')
-        month = get_month_name(date_str)
+        month, year = get_date_details(date_str)
 
         if year not in output:
             output[year] = {}
