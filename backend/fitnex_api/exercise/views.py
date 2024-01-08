@@ -1,6 +1,9 @@
+from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
+from exercise.utils import get_organized_data
 from fitnex_api.authentication_middleware import IsAuthenticatedCustom
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -108,9 +111,22 @@ class LogsView(APIView):
     permission_classes = (IsAuthenticatedCustom,)
 
     def get(self, request):
+        # Gets the month and/or year provided in Titlecase
+        month = (request.query_params.get(
+            'month') or date.today().strftime('%B')).title()
+        year = (request.query_params.get(
+            'year') or date.today().strftime('%Y')).title()
+
         logs = Log.objects.filter(user=request.user).all()
         serializer = self.serializer_class(logs, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        data = get_organized_data(serializer.data)
+
+        # Filters the data by the year and month
+        output = {y: {
+            m: l for m, l in data[y].items() if m == month
+        } for y in data.keys() if y == year}
+
+        return Response(output, status=status.HTTP_200_OK)
 
     def post(self, request):
         exercise_ids = request.data.get("exercises")
@@ -136,7 +152,9 @@ class LogsView(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
 
         with transaction.atomic():
-            log = Log.objects.create(user=request.user)
+            today = timezone.now().date()
+            log, _ = Log.objects.get_or_create(
+                date_created=today, user=request.user)
             log.exercises.add(*exercises)
 
         serializer = self.serializer_class(log)
