@@ -134,9 +134,17 @@ class LogsView(APIView):
         if not exercise_ids:
             return Response({"message": "Unable to log exercises"},
                             status=status.HTTP_400_BAD_REQUEST)
+        
+        # for a single exercise
+        if isinstance(exercise_ids, int):
+            exercise_ids = [exercise_ids]
 
         exercises = []
         invalid_ids = []
+        
+        if not isinstance(exercise_ids, list):
+            return Response({"message": "Invalid exercise IDs"},
+                            status=status.HTTP_400_BAD_REQUEST)
 
         for e_id in exercise_ids:
             try:
@@ -144,12 +152,6 @@ class LogsView(APIView):
                 exercises.append(exercise)
             except Exercise.DoesNotExist:
                 invalid_ids.append(e_id)
-
-        if invalid_ids:
-            invalid_ids_str = ', '.join(map(str, invalid_ids))
-            return Response({
-                "message": f"Invalid exercise IDs: {invalid_ids_str}"
-            }, status=status.HTTP_400_BAD_REQUEST)
 
         with transaction.atomic():
             today = timezone.now().date()

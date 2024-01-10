@@ -1,11 +1,14 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import ExerciseCard from './ExerciseCard';
 import { BodyParts, Exercise } from '@/lib/network';
-import { useDataFetch } from './hooks/useDataFetch';
 import { BodyPartProps, ExerciseProps } from '@/lib/types';
+import { useStore } from '@/store';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import ExerciseCard from './ExerciseCard';
 import Loader from './Loader';
 import Pagination from './Pagination';
+import { useDataFetch } from './hooks/useDataFetch';
 
 type Props = {
   exercises: ExerciseProps[];
@@ -14,7 +17,7 @@ type Props = {
 };
 
 const Exercises = ({ exercises, setExercises, bodyPart }: Props) => {
-
+  const store = useStore()
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 9;
 
@@ -31,7 +34,6 @@ const Exercises = ({ exercises, setExercises, bodyPart }: Props) => {
   );
   // console.log(exercise)
 
-
   useEffect(() => {
     const fetchExerciseData = async () => {
       let exerciseData: ExerciseProps[] = [];
@@ -46,7 +48,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }: Props) => {
       }
 
       setExercises(exerciseData);
-      console.log(exerciseData);
+      // console.log(exerciseData);
     };
 
     // Check if bodyParts is not null and exercise is available before making the request
@@ -64,6 +66,27 @@ const Exercises = ({ exercises, setExercises, bodyPart }: Props) => {
   const endIndex = startIndex + itemsPerPage;
   const displayedExercises = exercises.slice(startIndex, endIndex);
 
+  const router = useRouter()
+
+  const handleAddLogsClick = async (exerciseId: number) => {
+    // we want to useMutate to pass the excercise id
+    const token = store.authUser
+    // console.log(exercises)
+    // console.log(token)
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    }
+
+    const config = {
+      headers: headers
+    }
+    const response = await axios.post(Exercise.logs, 
+      {"exercises": exerciseId}
+      , config)
+    // console.log(response.data)
+    return response
+  }
+
 
   if (exerciseLoading || bodyPartLoading || exercise_bodyPartsLoading) {
     // Render loader while data is still loading
@@ -78,13 +101,13 @@ const Exercises = ({ exercises, setExercises, bodyPart }: Props) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8">
         {displayedExercises.map((exercise: ExerciseProps) => (
           <div key={exercise.id} className="">
-            <ExerciseCard key={exercise.id} exercise={exercise} />
+            <ExerciseCard exercise={exercise} onClick={() => handleAddLogsClick(exercise.id)} showButton={true} />
           </div>
         ))}
       </div>
       {/* Handle pagination */}
       <div className="flex self-center justify-center mt-10">
-      <Pagination onLoadMore={handleLoadMore} showLoadMore={exercises.length > endIndex} />
+        <Pagination onLoadMore={handleLoadMore} showLoadMore={exercises.length > endIndex} />
       </div>
     </div>
   );

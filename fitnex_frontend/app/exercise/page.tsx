@@ -1,14 +1,13 @@
 "use client"
 
 
-import { useState } from 'react'
+import Exercises from '@/components/Exercises';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import SearchExcercise from '@/components/SearchExcercise';
 import { BodyPartProps, ExerciseProps } from '@/lib/types';
-import Exercises from '@/components/Exercises';
 import { useStore } from '@/store';
-import { redirect } from 'next/navigation';
-import { toast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 
 export default function Home () {
@@ -17,10 +16,14 @@ export default function Home () {
   const [exercises, setExercises] = useState<ExerciseProps[]>([])
   const [bodyPart, setBodyPart] = useState<BodyPartProps[]>([]);
   const store = useStore()
+  const router = useRouter()
+  useEffect(() => {
+    if (store.authUser === null) {
+      router.push('/login')
+      router.refresh()
+    }
 
-  if (store.authUser === null) {
-    redirect('/login')
-  }
+  }, [store.authUser, router])
   // console.log(bodyPart)
 
   return (

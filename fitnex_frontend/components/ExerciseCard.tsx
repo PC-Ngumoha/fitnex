@@ -2,17 +2,19 @@ import React from 'react';
 import Image from 'next/image';
 import { ExerciseProps } from '@/lib/types';
 import Link from 'next/link';
+import { Button } from './ui/button';
 
 type Props = {
     exercise: ExerciseProps;
+    onClick?: () => void;
+    showButton?: boolean;
 };
 
-const ExerciseCard = ({ exercise }: Props) => {
+const ExerciseCard = ({ exercise, onClick, showButton = false }: Props) => {
     return (
-        <>
+        <div className="w-full border-t-4 border-blue-500 rounded-bl-20 no-underline flex flex-col items-center justify-between pb-4 transform scale-75 transition-all duration-300 ease-in-out hover:scale-90 hover:shadow-lg">
             <Link
                 href={`/exercise/${exercise.id}`}
-                className="w-full border-t-4 border-blue-500 rounded-bl-20 no-underline flex flex-col justify-between pb-4 transform scale-75 transition-all duration-300 ease-in-out hover:scale-90 hover:shadow-lg"
             >
                 <div className='flex flex-col items-center justify-center rounded-bl-20 '>
                     <Image
@@ -39,8 +41,13 @@ const ExerciseCard = ({ exercise }: Props) => {
                     </h1>
                 </div>
             </Link>
+            <div className='mt-3'>
+                {showButton && <Button variant="outline" className='hover:bg-blue-500 hover:text-white' size="sm" onClick={onClick}>
+                    Add to Log
+                </Button>}
+            </div>
 
-        </>
+        </div>
     );
 };
 

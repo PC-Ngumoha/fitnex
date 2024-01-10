@@ -1,18 +1,17 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Detail from '@/components/Detail';
 import ExerciseVideo from '@/components/ExerciseVideo';
-import SimilarExercise from '@/components/SimilarExercise';
-import { fetchData, youtubeOptions } from '@/lib/utils';
-import { Exercise, Targets, Equipments } from '@/lib/network';
-import { ExerciseProps, ExcerciseDetail, TargetProps, EquipmentProps, BodyPartProps } from '@/lib/types';
-import { useDataFetch } from '@/components/hooks/useDataFetch';
 import Loader from '@/components/Loader';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import SimilarExercise from '@/components/SimilarExercise';
+import { useDataFetch } from '@/components/hooks/useDataFetch';
+import { Equipments, Exercise, Targets } from '@/lib/network';
+import { EquipmentProps, ExcerciseDetail, ExerciseProps, TargetProps } from '@/lib/types';
+import { youtubeOptions } from '@/lib/utils';
 import { useStore } from '@/store';
 import { redirect } from 'next/navigation';
-import { toast } from '@/components/ui/use-toast';
+import { useEffect, useState } from 'react';
 
 type Props = {
     params: {

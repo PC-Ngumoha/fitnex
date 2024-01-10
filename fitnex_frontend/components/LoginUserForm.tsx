@@ -16,6 +16,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from './ui/use-toast';
 import Link from 'next/link';
 import { useStore } from '@/store';
+import { UserResponse } from '@/lib/types';
 
 type Props = {}
 
@@ -47,7 +48,7 @@ const LoginUserForm = (props: Props) => {
 
     function onSubmit(userData: UserRegInput) {
         registerUser(userData, {
-            onSuccess: (token) => {
+            onSuccess: (token: any) => {
                 // console.log(token)
                 store.setAuthUser(token.access_token)
                 toast({
@@ -82,7 +83,7 @@ const LoginUserForm = (props: Props) => {
                             <FormItem className='mb-4'>
                                 <FormLabel className='text-xl'>Email</FormLabel>
                                 <FormControl>
-                                    <Input placeholder='Enter your email' {...field}/>
+                                    <Input placeholder='Enter your email' {...field} />
                                 </FormControl>
                             </FormItem>
                         )}
@@ -95,7 +96,7 @@ const LoginUserForm = (props: Props) => {
                             <FormItem className='mb-4'>
                                 <FormLabel className='text-xl'>Password</FormLabel>
                                 <FormControl>
-                                    <Input placeholder='Enter a secret password' {...field} type='password' autoComplete='off'/>
+                                    <Input placeholder='Enter a secret password' {...field} type='password' autoComplete='off' />
                                 </FormControl>
                             </FormItem>
                         )}

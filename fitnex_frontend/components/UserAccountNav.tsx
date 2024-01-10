@@ -7,6 +7,8 @@ import UserAvatar from './UserAvatar'
 
 import { useRouter } from "next/navigation"
 import { User as UserProps } from '@/lib/types'
+import { useStore } from '@/store'
+import { useEffect } from 'react'
 
 type Props = {
   user: UserProps | any | null
@@ -16,20 +18,25 @@ type Props = {
 const UserAccountNav = ({ user }: Props) => {
 
   const router = useRouter();
+  const store = useStore()
 
-  const logout = async () => {
-    try {
-      router.push("/login");
-      router.refresh();
-      return;
-    } catch (error) {
-      console.error("Error during logout:", error);
-    }
+  const logoutUser = async () => {
+    store.logout();
+    router.push("/login");
+    router.refresh()
   };
 
   const goToAccount = () => {
-    router.push("/account/me");
+    router.push("/profile");
   };
+
+  useEffect(() => {
+    if (user === null) {
+      router.refresh
+    }
+
+  }, [user, router])
+
 
   return (
     <>
@@ -46,7 +53,7 @@ const UserAccountNav = ({ user }: Props) => {
             <span>My Account</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onSelect={logout}
+          <DropdownMenuItem onSelect={logoutUser}
             className="flex items-center justify-center text-red-600 cursor-pointer"
           >
             Sign Out
