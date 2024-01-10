@@ -1,13 +1,10 @@
-import { PuffLoader } from '@/components/spinners'
-import React from 'react'
 
+import Loader from "@/components/Loader";
 
-type Props = {}
-
-const LoadingComponent = (props: Props) => {
-  return (
-    <PuffLoader className="w-10 h-10" />)
- 
-}
-
-export default LoadingComponent
+export default function Loading() {
+    // You can add any UI inside Loading, including a Skeleton.
+    return (
+      <div className='w-full h-full flex items-center justify-center'><Loader /></div>
+  
+    )
+  }

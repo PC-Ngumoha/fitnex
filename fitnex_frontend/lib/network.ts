@@ -1,3 +1,4 @@
+import { create } from 'zustand';
 
 
 const BASE_URL = "http://127.0.0.1:8000"
@@ -22,8 +23,9 @@ type EndpointUrls = {
     list: string;
 };
 
-export const Exercise: EndpointUrls = {
+export const Exercise: EndpointUrls & { logs: string } = {
     list: `${BASE_URL}/exercise/exercises`,
+    logs: `${BASE_URL}/exercise/logs`,
 };
 
 export const BodyParts: EndpointUrls = {

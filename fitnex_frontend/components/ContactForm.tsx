@@ -11,7 +11,7 @@ export default function Component() {
     <Card className="max-w-md mx-auto rounded-xl shadow-md overflow-hidden md:max-w-2xl">
       <CardHeader>
         <CardTitle className="text-2xl font-bold">Contact Us</CardTitle>
-        <CardDescription className="text-gray-500 dark:text-gray-400">We&aposd love to hear from you!</CardDescription>
+        <CardDescription className="text-gray-500 dark:text-gray-400">We&apos;d love to hear from you!</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">

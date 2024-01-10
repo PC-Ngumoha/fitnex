@@ -22,6 +22,8 @@ const UserAccountNav = ({ user }: Props) => {
 
   const logoutUser = async () => {
     store.logout();
+    router.push("/login");
+    router.refresh()
   };
 
   const goToAccount = () => {

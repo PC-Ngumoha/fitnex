@@ -24,7 +24,7 @@ const ProfileCard = (props: Props) => {
 
     useEffect(() => {
       if (data) {
-        console.log(data);
+        // console.log(data);
         setUser(data);
       }
     }, [data])

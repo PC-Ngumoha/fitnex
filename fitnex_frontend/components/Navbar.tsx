@@ -30,7 +30,7 @@ const Navbar = (props: Props) => {
 
     return (
         <>
-            <header className="flex h-20 w-full items-center justify-between fixed top-0 z-10 px-4 md:px-6 backdrop-blur-sm">
+            <header className="flex h-20 w-full items-center justify-between fixed top-0 z-10 md:px-6 backdrop-blur-sm">
                 <Link className="mr-6 flex rounded-lg p-4 py-1" href="/">
                     <h1 className='text-3xl font-bold transition-all hover:translate-y-[2px] md:block bg-gradient-to-r from-blue-500 to-blue-100 bg-clip-text text-transparent'>
                         Fitnex
@@ -38,38 +38,7 @@ const Navbar = (props: Props) => {
                     <p className='text-yellow-500'>beta</p>
                 </Link>
 
-                <Sheet >
-                <SheetTrigger asChild>
-                    <Button className="md:hidden" size="icon" variant="outline">
-                        <MenuIcon className="h-6 w-6" />
-                        <span className="sr-only">Toggle navigation menu</span>
-                    </Button>
-                </SheetTrigger>
-                <SheetContent side="right">
-                    <Link href="/">
-                        <span className="sr-only">Fitnex</span>
-                    </Link>
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 space-y-16">
-                        <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/">
-                            Home
-                        </Link>
-                        <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/about">
-                            About
-                        </Link>
-                        <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/blog">
-                            Blog
-                        </Link>
-                        <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/faqs">
-                            FAQs
-                        </Link>
-                        <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/contact">
-                            Contact
-                        </Link>
-                    </div>
-                </SheetContent>
-            </Sheet>
-
-                <div className="hidden md:flex md:items-center md:justify-center space-x-10 border px-6 py-4 rounded-full border-neutral-800 bg-white/70 hover:scale-105">
+                <div className="hidden md:flex md:items-center md:justify-center space-x-10 border px-6 py-4 rounded-full border-neutral-800 bg-white/70 hover:scale-105 dark:bg-white/10">
                     <Link className="w-full h-full hover:text-blue-400 " href="/">
                         Home
                     </Link>
@@ -91,11 +60,11 @@ const Navbar = (props: Props) => {
                     </Link>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 md:gap-4">
                     {mounted && user === null ? (<>
 
                         <Link href="/login">
-                            <Button className="hidden md:flex" variant="outline">
+                            <Button className="md:flex" variant="outline">
                                 Sign in
                             </Button>
                         </Link>
@@ -113,11 +82,61 @@ const Navbar = (props: Props) => {
                                 View Exercises
                             </Button>
                         </Link>
+
+                        <Link href="/exercise/logs">
+                            <Button className="hidden md:flex" variant="outline">
+                                View Logs
+                            </Button>
+                        </Link>
                         <UserAccountNav user={mounted && user} />
                     </>
                     )}
-
+                    {/* Theme toggle */}
                     <ThemeToggle />
+                    {/* Mobile Nav */}
+                    <Sheet >
+                        <SheetTrigger asChild>
+                            <Button className="md:hidden" size="icon" variant="outline">
+                                <MenuIcon className="h-6 w-6" />
+                                <span className="sr-only">Toggle navigation menu</span>
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="right">
+                            <Link href="/">
+                                <span className="sr-only">Fitnex</span>
+                            </Link>
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 space-y-10">
+
+                                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/">
+                                    Home
+                                </Link>
+                                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/about">
+                                    About
+                                </Link>
+                                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/blog">
+                                    Blog
+                                </Link>
+                                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/faqs">
+                                    FAQs
+                                </Link>
+                                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/contact">
+                                    Contact
+                                </Link>
+                                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/exercise">
+                                    Exercise
+                                </Link>
+                                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/exercise/logs">
+                                    Logs
+                                </Link>
+                                <Link className="flex w-full items-center py-2 text-lg font-semibold" href="/register">
+                                    SignUp
+                                </Link>
+
+                            </div>
+                        </SheetContent>
+                    </Sheet>
+
+
 
                 </div>
             </header>

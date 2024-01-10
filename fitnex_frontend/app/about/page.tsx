@@ -10,8 +10,8 @@ export default function Component() {
     <>
       <main className="container mx-auto py-12 px-4 sm:px-6 lg:py-24 lg:px-8">
         <div className="lg:text-center">
-          <p className="text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">About us</p>
-          <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+          <p className="text-2xl text-center text-indigo-600 font-bold tracking-wide uppercase">About us</p>
+          <h3 className="mt-2 text-md leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
             A team dedicated to your fitness goals
           </h3>
           <p className="mt-4 max-w-2xl text-xl text-gray-400 lg:mx-auto">
@@ -56,7 +56,7 @@ export default function Component() {
                 </Avatar>
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold">Chukwuemeka Ngumoha</h3>
-                  <Badge>Backend Developer</Badge>
+                  <Badge>Software Developer</Badge>
                   <p className="text-gray-600 dark:text-gray-400">
                     ALX Student & Fitness Enthusiast.
                   </p>
@@ -71,9 +71,9 @@ export default function Component() {
                 </Avatar>
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold">Aliyu Timilehin</h3>
-                  <Badge>Backend Developer</Badge>
+                  <Badge>Software Developer</Badge>
                   <p className="text-gray-600 dark:text-gray-400">
-                    ALX Student & Fitness Enthusiast.
+                    ALX Student.
                   </p>
                 </div>
               </CardContent>
@@ -86,7 +86,7 @@ export default function Component() {
                 </Avatar>
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold">Kyrillos Maher</h3>
-                  <Badge>Backend Developer</Badge>
+                  <Badge>Software Developer</Badge>
                   <p className="text-gray-600 dark:text-gray-400">
                     ALX Student & Fitness Enthusiast.
                   </p>
@@ -101,7 +101,7 @@ export default function Component() {
                 </Avatar>
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold">Ibrahim Abdulazeez</h3>
-                  <Badge>Backend Developer</Badge>
+                  <Badge>Software Developer</Badge>
                   <p className="text-gray-600 dark:text-gray-400">
                     ALX Student & Fitness Enthusiast.
                   </p>

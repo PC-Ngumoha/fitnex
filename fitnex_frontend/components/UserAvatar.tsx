@@ -15,7 +15,7 @@ const UserAvatar = ({ user }: Props) => {
             <Avatar>
 
                 <div className="flex items-center justify-center w-full h-full aspect-square">
-                    <AvatarImage src={user.image} alt='user-profile' />
+                    <AvatarImage src={user.avatar? user.avatar: "https://github.com/shadcn.png"} alt='user-profile' />
                     <AvatarFallback>
                         <User2 className='w-4 h-4' />
                     </AvatarFallback>
