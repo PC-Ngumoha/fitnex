@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 
-export default function Home() {
+export default function Home () {
 
   //changes are reflected acrross the app
   const [exercises, setExercises] = useState<ExerciseProps[]>([])

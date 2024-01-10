@@ -8,7 +8,7 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 
 type Props = {
-  setExercises: (exercise:ExerciseProps[]) => void,
+  setExercises: (exercise: ExerciseProps[]) => void,
   bodyPart: BodyPartProps[],
   setBodyPart: (bodyPart: BodyPartProps[]) => void
 }

@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate
 
 # Create your views here.
 
+
 class CreateUserView(APIView):
     serializer_class = CustomUserSerializer
 
@@ -63,14 +64,14 @@ class LoginView(APIView):
 
 class ResetPasswordView(APIView):
     """Reset Password View"""
-    
+
 
 class CurrentUserView(APIView):
     """ currentlylogged in user view"""
-    
+
     serializer_class = CustomUserSerializer
-    permission_classes = [IsAuthenticatedCustom]
-    
+    permission_classes = (IsAuthenticatedCustom,)
+
     def get(self, request):
         serializer = self.serializer_class(request.user)
         return Response(serializer.data)

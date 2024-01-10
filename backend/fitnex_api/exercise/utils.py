@@ -1,3 +1,4 @@
+from datetime import datetime
 from dotenv import load_dotenv
 import cloudinary
 import cloudinary.exceptions
@@ -76,3 +77,27 @@ def download_and_upload_image(gif_url, folder='fitnex_gifs'):
         # except Exception as e:
         #     print(f"Error removing temporary file: {e}")
         print('Done')
+
+
+def get_date_details(date_str):
+    try:
+        date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+        month = date_obj.strftime('%B')
+        year = date_obj.strftime('%Y')
+        return (month, year)
+    except ValueError:
+        return None
+
+
+def get_organized_data(logs):
+    output = {}
+    for log in logs:
+        date_str = log.get('date_created')
+        month, year = get_date_details(date_str)
+
+        if year not in output:
+            output[year] = {}
+        if month not in output[year]:
+            output[year][month] = []
+        output[year][month].append(log)
+    return output

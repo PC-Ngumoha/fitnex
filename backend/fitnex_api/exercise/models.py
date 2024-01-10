@@ -25,8 +25,10 @@ class Target(models.Model):
 
 class Exercise(models.Model):
     name = models.CharField(max_length=255)
-    bodyPart = models.ForeignKey(BodyPart, on_delete=models.CASCADE, db_index=True)
-    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE, db_index=True)
+    bodyPart = models.ForeignKey(
+        BodyPart, on_delete=models.CASCADE, db_index=True)
+    equipment = models.ForeignKey(
+        Equipment, on_delete=models.CASCADE, db_index=True)
     target = models.ForeignKey(Target, on_delete=models.CASCADE, db_index=True)
     gifUrl = models.URLField()
     secondaryMuscles = models.JSONField()
@@ -44,4 +46,4 @@ class Log(models.Model):
     user = models.ForeignKey(FitUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.date_created
+        return f'{self.date_created}'
