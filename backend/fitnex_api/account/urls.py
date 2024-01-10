@@ -10,9 +10,8 @@ urlpatterns = [
     path("register", CreateUserView.as_view(), name="create_user"),
     path("login", LoginView.as_view(), name="login"),
     path("me", CurrentUserView.as_view(), name="me"),
-    # path('password-reset', ResetPasswordView.as_view(), name='password-reset'),
     
-    # Default reset urls
+    # Password reset urls
     path('password-reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
