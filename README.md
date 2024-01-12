@@ -1,4 +1,4 @@
-# Fitnex - Your Ultimate Fitness Companion
+# Fitnex — Your Ultimate Fitness Companion
 
 Fitnex is a comprehensive fitness website designed to empower users on their fitness journey. Whether you are a seasoned athlete or just starting, Fitnex offers a personalized approach to exercise, allowing users to tailor their routines based on specific goals, available equipment, and targeted body parts.
 
