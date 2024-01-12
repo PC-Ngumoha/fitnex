@@ -68,7 +68,6 @@ Make sure you have the following installed:
 - **Backend:**
   - Django Rest Framework
   - PyJWT
-  - 
 - **Frontend:**
   - React, NextJs, Tailwind CSS
   - Zustand, Tanstack e.t.c for state management
