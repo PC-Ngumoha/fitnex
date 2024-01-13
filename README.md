@@ -139,7 +139,7 @@ fitnex
 - The Fitnex team: 
   - [Chukwuemeka Ngumoha](https://github.com/PC-Ngumoha)
   - [Aliyu Timilehin](https://github.com/TangoIndiaMango)
-  - Ibrahim Abdulazeez
+  - [Ibrahim Abdulazeez](https://github.com/tech2world)
   - [Kyrillos Maher](https://github.com/Cyril-777)
 - [Exercise DB API](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/) for providing a rich source of exercise data.
 - [Pexels](https://www.pexels.com/) and [Icons8](https://icons8.com/) for media content.
